@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet - Forgot Password</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fdb612",
+                        "navy-deep": "#1a237e",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231d0f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<div class="relative flex h-full min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden max-w-[480px] mx-auto shadow-2xl">
+<!-- Header Nav -->
+<div class="flex items-center bg-transparent p-4 justify-between">
+<a class="text-navy-deep dark:text-primary flex size-12 shrink-0 items-center justify-start" href="#">
+<span class="material-symbols-outlined text-[32px]">arrow_back</span>
+</a>
+<div class="flex-1 flex justify-center pr-12">
+<img alt="Fiber Jet Logo" class="h-8" data-alt="Fiber Jet modern tech logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG5-c6G7C2yl8ufIXXfmjtAyHbdEbeWZVpOJp_-gZZT3iwWZtX0p51ztM__X9Jvak2GzCVIA5IJ92zCAoPHj4pzuzog487Y9s4pVPWm2tVhzugqy4Wxs-tx7X6roTxLhAi-z62p8G2AOuAlYdqrAN-qOSd7xVMflE-Rohc2t_XEUmMpQpkRs46Firw1BvcZtfYqiHmFE0GyuMmn2xPSgUcTM-9_8lBWxJIDpb_wQokr65k6bGQ_JLv3VIUwZtI2Ax8cmcXZtMAbCEo"/>
+</div>
+</div>
+<!-- Main Content Scroll Area -->
+<div class="flex flex-col grow px-6 pb-10">
+<!-- Hero Illustration Container -->
+<div class="flex w-full justify-center py-8">
+<div class="relative w-64 h-64 bg-primary/10 dark:bg-primary/5 rounded-full flex items-center justify-center">
+<!-- Rocket Illustration (Using Material Icon for high speed feel) -->
+<div class="text-primary flex flex-col items-center">
+<span class="material-symbols-outlined text-[120px] leading-none">rocket_launch</span>
+<div class="mt-2 h-1.5 w-12 bg-primary/40 rounded-full blur-sm"></div>
+</div>
+<!-- Floating Key Decoration -->
+<div class="absolute top-4 right-4 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-lg border border-primary/20">
+<span class="material-symbols-outlined text-navy-deep dark:text-primary text-[28px]">vpn_key</span>
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="text-center mb-8">
+<h2 class="text-navy-deep dark:text-primary tracking-tight text-[32px] font-bold leading-tight mb-3">
+                    Forgot Password?
+                </h2>
+<p class="text-slate-600 dark:text-slate-400 text-base font-normal leading-relaxed px-2">
+                    No worries! Enter your registered email or phone number and we'll send you a link to reset your access.
+                </p>
+</div>
+<!-- Form Section -->
+<div class="space-y-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-navy-deep dark:text-primary px-1">Email or Phone Number</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">alternate_email</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary dark:focus:border-primary outline-none transition-all placeholder:text-slate-400" placeholder="e.g., alex@fiberjet.com" type="text"/>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-navy-deep font-bold text-lg py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-transform active:scale-[0.98]">
+<span>Send Reset Instructions</span>
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-auto pt-10 text-center">
+<a class="inline-flex items-center gap-2 text-navy-deep dark:text-primary font-semibold hover:underline" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back_ios</span>
+                    Back to Login
+                </a>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Contextual) -->
+<div class="flex gap-2 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-6 pt-3">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-navy-deep dark:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] fill-current">person</span>
+</a>
+</div>
+</div>
+</body></html>

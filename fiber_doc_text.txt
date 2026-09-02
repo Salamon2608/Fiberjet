@@ -1,0 +1,1128 @@
+FIBER JET
+ISP Management Platform
+Software Requirements Specification  |  System Architecture  |  Security Design
+SELF-HOSTED STACK
+Laravel 11  +  Flutter  +  PostgreSQL  +  Supabase  +  Nextcloud
+Field
+Value
+Document Version
+3.0 — Updated Stack (Self-Hosted)
+Classification
+CONFIDENTIAL — INTERNAL USE ONLY
+Backend
+Dart_frog
+Mobile App
+Flutter 3.x — iOS & Android
+Admin Panel
+React 18 + Vite + TailwindCSS
+Database
+PostgreSQL 16 
+File Storage
+Nextcloud (self-hosted) — Customer Cloud Drive
+Real-time / Auth
+Flutter - dart auth, google auth
+Total Screens
+41 screens across 4 user roles
+Date
+2026
+Table of Contents
+Table of Contents
+2
+1. Project Overview
+4
+1.1 Self-Hosted Infrastructure Philosophy
+4
+1.2 Technology Stack — Self-Hosted
+4
+2. Supabase (Self-Hosted) + PostgreSQL
+6
+2.1 What Supabase Provides in This Stack
+6
+2.2 Laravel ↔ PostgreSQL Connection
+6
+2.3 Row Level Security (RLS) Policies
+6
+2.4 PostgreSQL Performance Configuration
+7
+3. Nextcloud (Self-Hosted) — Cloud Drive
+8
+3.1 Nextcloud Integration Architecture
+8
+3.2 Storage Quota by Plan
+8
+3.3 Nextcloud API Integration — Laravel Service
+9
+3.4 Nextcloud Security Configuration
+9
+4. Database Schema (PostgreSQL)
+10
+4.1 Core Application Tables
+10
+4.2 PostgreSQL-Specific Features Used
+11
+5. Security Architecture
+13
+5.1 Authentication Security
+13
+5.2 API Security
+13
+5.3 Data Encryption
+13
+5.4 Nextcloud-Specific Security
+14
+5.5 PostgreSQL / Supabase Security
+14
+5.6 Mobile App Security (Flutter)
+15
+5.7 VPS Infrastructure Security
+15
+6. User Roles & Permissions
+16
+6.1 Customer — 15 Screens
+16
+6.2 Sales Person — 8 Screens
+17
+6.3 Service Technician — 8 Screens
+17
+6.4 Admin / Manager — 10 Screens
+18
+7. REST API Endpoints
+19
+7.1 Authentication
+19
+7.2 Customer Endpoints
+19
+7.3 Sales Person Endpoints
+20
+7.4 Technician Endpoints
+20
+7.5 Admin Endpoints
+21
+8. Real-Time & Push Notifications
+22
+8.1 WebSocket Stack — Soketi (Self-Hosted Pusher)
+22
+8.2 Real-Time WebSocket Events
+22
+8.3 FCM Push Notification Triggers
+22
+9. Deployment Architecture
+24
+9.1 VPS Service Layout
+24
+9.2 Nginx Virtual Hosts
+24
+9.3 CI/CD Pipeline
+24
+9.4 Backup Strategy
+25
+10. Key Feature Specifications
+26
+10.1 Customer Cloud Drive (Nextcloud)
+26
+10.2 Network Scanner
+26
+10.3 Speed Test
+26
+10.4 Leads Pipeline (Sales)
+27
+10.5 Technician Job Workflow
+27
+10.6 VIP / Permanent User
+27
+11. Testing Strategy
+28
+11.1 Backend (Laravel / PHPUnit)
+28
+11.2 Mobile (Flutter)
+28
+11.3 Security Testing
+28
+12. Compliance & Data Privacy
+29
+12.1 Data Retention
+29
+12.2 TRAI / DoT Compliance (India)
+29
+13. Glossary
+29
+14. Appendix — Development Milestones
+30
+15. Document Control
+31
+SECTION 1
+Project Overview & Goals
+1. Project Overview
+Fiber Jet is a fully self-hosted, full-stack ISP management platform. Every component — API server, database, file storage, real-time engine, and admin panel — runs on your own VPS infrastructure, giving you complete control over data, security, and costs.
+The platform serves four distinct user roles through dedicated mobile interfaces (Flutter) and a web admin dashboard (React), all powered by a Laravel 11 REST API backed by PostgreSQL via Supabase and Nextcloud for customer file storage.
+1.1 Self-Hosted Infrastructure Philosophy
+Zero vendor lock-in — every service can be migrated or scaled independently
+100% data sovereignty — all customer data, files, and logs stay on your VPS
+Cost efficiency — no per-GB cloud storage fees, no SaaS per-seat charges
+Security by design — no third-party company has access to your customer data
+Full audit control — every request, file, and database change is logged on your own server
+1.2 Technology Stack — Self-Hosted
+Layer
+Technology / Tool (All Self-Hosted on VPS)
+Backend API
+Laravel 11 (PHP 8.3) — RESTful API, Sanctum Auth
+Mobile App
+Flutter 3.x — single codebase for iOS & Android
+Admin Web Panel
+React 18 + Vite + TailwindCSS
+Primary Database
+PostgreSQL 16 — managed via Supabase self-hosted
+Supabase Role
+PostgreSQL host + Studio UI + Row Level Security (RLS)
+Customer File Storage
+Nextcloud (self-hosted) — Cloud Drive feature
+Cache & Queues
+Redis 7 — sessions, rate limiting, job queues
+Push Notifications
+Firebase Cloud Messaging (FCM) — only external service
+Real-time / WebSocket
+Laravel Echo + Soketi (self-hosted Pusher alternative)
+SMS / OTP
+MSG91 or self-hosted SMS gateway (Gammu/Kannel)
+Maps & Location
+Google Maps SDK (mobile) + OpenStreetMap (admin panel)
+SSL / Security
+Let's Encrypt TLS 1.3 + HSTS + Nginx WAF rules
+CI/CD
+GitHub Actions → SSH deploy → Docker on VPS
+Monitoring
+Netdata (self-hosted) + Sentry self-hosted
+Backup
+Automated daily pg_dump + rclone to separate backup VPS
+SECTION 2
+Supabase + PostgreSQL Architecture
+2. Supabase (Self-Hosted) + PostgreSQL
+Supabase is deployed self-hosted on your VPS using the official Docker Compose stack. Laravel connects to the PostgreSQL 16 database directly via the standard pg driver. Supabase Studio provides a visual database UI for your team.
+2.1 What Supabase Provides in This Stack
+Supabase Feature
+How It Is Used in Fiber Jet
+PostgreSQL 16
+Primary application database — all app data stored here
+Supabase Studio
+Visual DB admin UI — view tables, run queries, inspect data
+Row Level Security
+RLS policies enforce that users can only read their own data
+pg_cron Extension
+Scheduled PostgreSQL jobs (e.g., auto-expire old OTP records)
+pgvector (optional)
+Future: AI-based lead scoring using vector similarity
+Supabase Auth
+NOT USED — Laravel Sanctum handles all authentication
+Supabase Realtime
+NOT USED — Laravel Echo + Soketi handles WebSocket events
+Supabase Storage
+NOT USED — Nextcloud handles all customer file storage
+2.2 Laravel ↔ PostgreSQL Connection
+config/database.php:  
+DB_CONNECTION=pgsql | DB_HOST=127.0.0.1 | DB_PORT=5432 | DB_DATABASE=fiberjet | DB_USERNAME=fiberjet_app | DB_PASSWORD=[strong_password] | DB_SSLMODE=require
+Security Note:  
+The PostgreSQL port 5432 is bound to localhost only. No external network access. Laravel connects via Unix socket or 127.0.0.1. Supabase Studio is accessed via SSH tunnel or private network — never exposed on a public port.
+2.3 Row Level Security (RLS) Policies
+RLS is enabled on all user-facing tables as a defence-in-depth layer. Even if a bug in the application code attempts to read another user's data, PostgreSQL's RLS policy will block it at the database level.
+Table
+RLS Policy Description
+users
+Users can SELECT/UPDATE only WHERE id = auth.uid() (mapped to app user_id)
+user_plans
+SELECT only WHERE user_id = current_app_user
+cloud_files
+SELECT/INSERT/DELETE only WHERE user_id = current_app_user
+network_devices
+SELECT/UPDATE only WHERE user_id = current_app_user
+complaints
+SELECT/INSERT only WHERE user_id = current_app_user
+ott_claims
+SELECT/INSERT only WHERE user_id = current_app_user
+commissions
+SELECT only WHERE sales_person_id = current_app_user
+jobs
+Technician: SELECT only WHERE technician_id = current_app_user
+payouts
+SELECT only WHERE user_id = current_app_user
+audit_logs
+Admin role only — no user-level access
+2.4 PostgreSQL Performance Configuration
+Connection pooling: PgBouncer deployed alongside PostgreSQL — Laravel connects via port 6432 (pooler), not 5432 directly
+Indexes on all foreign keys, frequently filtered columns (status, role, created_at)
+Partial indexes on active records: CREATE INDEX ON user_plans (user_id) WHERE status = 'active'
+pg_stat_statements extension enabled — slow queries logged and reviewed weekly
+Autovacuum tuned for write-heavy tables (leads, audit_logs, notifications)
+Read replicas: optional streaming replication to second VPS for report queries
+SECTION 3
+Nextcloud — Customer Cloud Drive
+3. Nextcloud (Self-Hosted) — Cloud Drive
+Nextcloud is deployed self-hosted on your VPS and serves as the Cloud Drive backend for customers. Laravel integrates with Nextcloud via its WebDAV API to provision user accounts, upload/download files, and manage storage quotas — all transparently from within the Fiber Jet mobile app.
+3.1 Nextcloud Integration Architecture
+Integration Method:  
+Laravel communicates with Nextcloud via WebDAV (RFC 4918) and Nextcloud's OCS Provisioning API. Customers never interact with Nextcloud directly — all file operations go through the Fiber Jet API, which proxies to Nextcloud behind the scenes.
+Nextcloud Feature
+How It Maps to Fiber Jet
+User Provisioning (OCS API)
+Auto-create a Nextcloud account for each customer on registration
+WebDAV file upload
+Customer uploads file in app → Laravel streams it to Nextcloud via WebDAV
+WebDAV file listing
+Laravel fetches file list from Nextcloud, returns formatted JSON to app
+WebDAV file download
+Laravel generates a temporary share link via Nextcloud API (15-min expiry)
+Storage Quota
+Set per-user quota via OCS API based on customer's active plan
+Folder structure
+Auto-create folders: /Documents, /Photos, /Bills, /ID-Proofs, /Other
+File encryption
+Nextcloud server-side encryption (AES-256) enabled for all user files
+Antivirus scanning
+ClamAV integrated via Nextcloud Antivirus app — scans on upload
+Admin oversight
+Admin can view usage stats and manage user quotas via Nextcloud admin panel
+3.2 Storage Quota by Plan
+Plan Tier
+Nextcloud Storage Quota
+Basic Plan
+5 GB — set via OCS API on plan activation
+Standard Plan
+20 GB — auto-updated when customer upgrades
+Premium Plan
+50 GB — auto-updated when customer upgrades
+VIP / Permanent
+100 GB — set on VIP flag by admin, never reduced
+Expired Plan
+Read-only mode — files accessible but no new uploads until renewal
+3.3 Nextcloud API Integration — Laravel Service
+NextcloudService.php:  
+Encapsulates all Nextcloud API calls. Uses HTTP client (Guzzle) with admin credentials. Methods: createUser(), setQuota(), uploadFile(), listFiles(), deleteFile(), generateShareLink(), deleteUser(). Credentials stored in .env, never in code.
+OCS Base URL
+https://cloud.yourdomain.com/ocs/v1.php/
+WebDAV Base URL
+https://cloud.yourdomain.com/remote.php/dav/files/{username}/
+Auth
+HTTP Basic Auth — admin service account (never customer credentials)
+Create User
+POST /ocs/v1.php/cloud/users  {userid, password, quota, displayName}
+Set Quota
+PUT /ocs/v1.php/cloud/users/{userid}  {quota: '20 GB'}
+Upload File
+PUT /remote.php/dav/files/{userid}/{folder}/{filename}  [file body]
+List Files
+PROPFIND /remote.php/dav/files/{userid}/{folder}/
+Share Link
+POST /ocs/v1.php/apps/files_sharing/api/v1/shares  {expireDate: +15min}
+Delete File
+DELETE /remote.php/dav/files/{userid}/{path}
+3.4 Nextcloud Security Configuration
+Nextcloud deployed behind Nginx reverse proxy — not directly exposed
+Admin account uses a strong random password stored only in Laravel .env
+Customer Nextcloud passwords are machine-generated UUIDs — customers never know them (all access via app)
+TLS 1.3 enforced on Nextcloud subdomain: cloud.yourdomain.com
+Nextcloud config: 'overwriteprotocol' => 'https', 'forcessl' => true
+Server-side encryption enabled: ./occ encryption:enable
+File access logs enabled — every download/upload logged with timestamp and user
+Nextcloud maintenance mode script — can freeze all file access in emergency
+CORS restricted — Nextcloud only accepts requests from api.yourdomain.com
+SECTION 4
+Database Schema — PostgreSQL 16
+4. Database Schema (PostgreSQL)
+All tables use PostgreSQL-native types: UUID primary keys (gen_random_uuid()), TIMESTAMPTZ for timestamps, JSONB for flexible data, and TEXT with CHECK constraints. Laravel Eloquent models map to these tables via standard Eloquent conventions.
+PostgreSQL over MySQL:  
+Using PostgreSQL gives us: UUID primary keys natively, JSONB for flexible config storage, full-text search, Row Level Security, superior ACID compliance, and better performance under high concurrency — all critical for a production ISP platform.
+4.1 Core Application Tables
+Table Name
+Key Columns & Purpose
+users
+id UUID PK, name, email, phone VARCHAR(15) UNIQUE, role ENUM, status, plan_id UUID FK, is_vip BOOL, kyc_status, nc_username (Nextcloud username), location POINT, created_at TIMESTAMPTZ
+plans
+id UUID PK, name, speed_mbps INT, data_limit_gb INT, price NUMERIC(10,2), cloud_storage_gb INT, validity_days INT, ott_benefits JSONB
+user_plans
+id UUID PK, user_id FK, plan_id FK, start_date DATE, expiry_date DATE, data_used_gb NUMERIC, status ENUM(active/expired/suspended), nc_quota_set BOOL
+leads
+id UUID PK, sales_person_id FK, customer_name, phone, address, stage ENUM, kyc_doc_path TEXT, score ENUM(hot/warm/cold), follow_up_at TIMESTAMPTZ, created_at
+lead_comments
+id UUID PK, lead_id FK, user_id FK, comment TEXT, type ENUM(note/call/status), created_at TIMESTAMPTZ
+jobs
+id UUID PK, technician_id FK, customer_id FK, type ENUM, status ENUM, scheduled_at TIMESTAMPTZ, completed_at TIMESTAMPTZ, address TEXT, checklist JSONB
+job_photos
+id UUID PK, job_id FK, photo_type ENUM(before/after), file_path TEXT, nc_file_id TEXT, uploaded_at TIMESTAMPTZ
+complaints
+id UUID PK, user_id FK, category ENUM, description TEXT, status ENUM, assigned_to FK, resolution TEXT, created_at TIMESTAMPTZ
+ott_claims
+id UUID PK, user_id FK, ott_platform VARCHAR, claimed_at TIMESTAMPTZ, expiry_date DATE, status ENUM
+cloud_files
+id UUID PK, user_id FK, nc_file_path TEXT, nc_share_token TEXT, file_name TEXT, file_type TEXT, file_size_mb NUMERIC, folder TEXT, is_deleted BOOL, created_at TIMESTAMPTZ
+network_devices
+id UUID PK, user_id FK, mac_address MACADDR UNIQUE, device_name TEXT, is_trusted BOOL DEFAULT false, is_blocked BOOL DEFAULT false, last_seen TIMESTAMPTZ
+commissions
+id UUID PK, sales_person_id FK, lead_id FK, amount NUMERIC(10,2), type ENUM(one_time/recurring), status ENUM(pending/approved/paid), paid_at TIMESTAMPTZ
+payouts
+id UUID PK, user_id FK, role ENUM, amount NUMERIC(10,2), bank_account TEXT ENCRYPTED, upi_id TEXT, aadhaar TEXT ENCRYPTED, status ENUM, approved_by FK, created_at TIMESTAMPTZ
+notifications
+id UUID PK, user_id FK, title TEXT, body TEXT, type TEXT, is_read BOOL DEFAULT false, data JSONB, sent_at TIMESTAMPTZ
+ads
+id UUID PK, title TEXT, image_path TEXT, target_roles TEXT[], target_plan_ids UUID[], is_active BOOL, start_date DATE, end_date DATE
+ratings
+id UUID PK, job_id FK, customer_id FK, technician_id FK, stars SMALLINT CHECK(stars BETWEEN 1 AND 5), comment TEXT, created_at TIMESTAMPTZ
+expenses
+id UUID PK, category TEXT, amount NUMERIC(10,2), description TEXT, expense_date DATE, added_by FK
+modem_info
+id UUID PK, user_id FK, mac_address MACADDR, device_type TEXT, ip_address INET, signal_strength INT, last_synced TIMESTAMPTZ
+audit_logs
+id UUID PK, user_id FK, action TEXT, target_table TEXT, target_id UUID, old_values JSONB, new_values JSONB, ip_address INET, user_agent TEXT, created_at TIMESTAMPTZ
+otp_logs
+id UUID PK, phone VARCHAR(15), otp_hash TEXT, attempts SMALLINT DEFAULT 0, expires_at TIMESTAMPTZ, is_used BOOL DEFAULT false, created_at TIMESTAMPTZ
+4.2 PostgreSQL-Specific Features Used
+UUID primary keys: DEFAULT gen_random_uuid() — no sequential ID guessing attacks
+MACADDR type for network_devices — PostgreSQL validates MAC address format at DB level
+INET type for IP addresses — validates IPv4/IPv6 format natively
+JSONB for checklist, ott_benefits, data columns — indexable JSON storage
+POINT type for user location — enables geospatial distance queries
+TEXT[] (array) for ads.target_roles — native array type, no join table needed
+TIMESTAMPTZ everywhere — timezone-aware timestamps prevent DST bugs
+CHECK constraints inline — stars BETWEEN 1 AND 5, role IN ('customer','sales','technician','admin')
+pgcrypto for OTP hashing: INSERT otp_hash = crypt(otp_code, gen_salt('bf', 12))
+pg_cron: scheduled job to DELETE FROM otp_logs WHERE expires_at < NOW() — runs every 5 minutes
+SECTION 5
+Security Architecture — Multi-Layer Defence
+5. Security Architecture
+Security is implemented as independent, overlapping layers. A failure at any one layer does not compromise the system because each subsequent layer independently enforces its own controls. This is the zero-trust, defence-in-depth model.
+5.1 Authentication Security
+OTP: 6-digit, valid 5 minutes, stored as bcrypt hash (never plain text)
+Rate limiting: max 3 OTP requests per phone number per 15 minutes (enforced via Redis)
+Account lockout: 5 consecutive failed OTP attempts → 30 minute lockout, admin notified
+Laravel Sanctum Bearer tokens — per-device, hashed in DB, plain token issued once
+Token TTL: 24h for customers, 8h for admin/sales/technician
+Tokens stored in Flutter Secure Storage (iOS Keychain / Android Keystore) — never in plain SharedPreferences
+New device login → push notification alert sent to user immediately
+Admin/Sales/Technician accounts require manual admin approval before first login
+5.2 API Security
+All traffic over HTTPS — HTTP requests redirected at Nginx, rejected if bypass attempted
+TLS 1.3 only — TLS 1.0 and 1.1 explicitly disabled in Nginx SSL config
+HSTS: Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+Rate limiting: 60 req/min per token (customer), 200 req/min (admin) — Redis-backed
+CORS: only registered Flutter app bundle IDs and admin domain allowed
+All input validated via Laravel Form Request classes before any controller logic runs
+Eloquent ORM only — no raw SQL queries permitted in codebase (enforced by code review)
+Security headers on every response: X-Content-Type-Options: nosniff, X-Frame-Options: DENY, Referrer-Policy: no-referrer
+Laravel SQL query log enabled in staging — reviewed for any unparameterized queries
+5.3 Data Encryption
+Data
+Encryption Method
+Passwords
+bcrypt cost 12 — Laravel Hash::make() — never stored plain
+OTP codes
+bcrypt via pgcrypto crypt() — stored as hash, compared with crypt()
+Aadhaar / PAN
+AES-256-GCM via Laravel Crypt::encryptString() — encrypted before INSERT
+Bank account/IFSC
+AES-256-GCM via Laravel Crypt::encryptString() — decrypted only for payout
+API tokens
+SHA-256 hash stored in DB — plain token shown once to client only
+Nextcloud files
+AES-256 server-side encryption via Nextcloud encryption module
+Job photo uploads
+Stored in Nextcloud private user folder — no public URL
+Location data
+Encrypted column in PostgreSQL using pgcrypto — admin-only decryption
+DB backups
+GPG-encrypted with asymmetric key — private key stored offline/vault
+API communication
+TLS 1.3 in transit + certificate pinning enforced in Flutter app
+PostgreSQL connection
+sslmode=require — Laravel refuses to connect without valid SSL
+Redis connection
+Password-protected + TLS tunnel if Redis on separate host
+5.4 Nextcloud-Specific Security
+Nextcloud admin password: 64-char random string stored only in Laravel .env — not in any database or code
+Customer Nextcloud passwords: machine-generated UUID — customer can never log into Nextcloud directly
+All Nextcloud WebDAV calls use HTTPS — Nginx terminates SSL, Nextcloud served on internal port
+Share links for downloads: expire after 15 minutes — enforced at Nextcloud API level
+ClamAV antivirus: scans every uploaded file before it is stored — infected files rejected with error
+Nextcloud file access logs: every operation (upload, download, delete, share) logged with user ID and timestamp
+Emergency lockdown: ./occ maintenance:mode --on — freezes all Nextcloud file access in seconds
+5.5 PostgreSQL / Supabase Security
+Port 5432: bound to 127.0.0.1 only — zero external access, confirmed via ufw and netstat
+Supabase Studio: accessed via SSH tunnel only — no public port exposed
+Application DB user (fiberjet_app): GRANT only SELECT, INSERT, UPDATE, DELETE — no DROP, TRUNCATE, CREATE
+Migration user (fiberjet_migrate): separate user with CREATE/ALTER permissions — used only during deployments
+Row Level Security enforced on all user-facing tables — documented in Section 2.3
+pg_audit extension: logs all DDL and sensitive DML operations
+Connection limit per user: fiberjet_app limited to 20 connections — prevents connection exhaustion DoS
+SSL required: pg_hba.conf: hostssl all fiberjet_app 127.0.0.1/32 scram-sha-256
+5.6 Mobile App Security (Flutter)
+Certificate pinning: Flutter app rejects connections with untrusted certificates (MITM prevention)
+Root/jailbreak detection: FlutterJailbreak package — warns user, restricts file access on compromised devices
+Biometric auth: fingerprint / Face ID option for app unlock (LocalAuthentication package)
+Flutter Secure Storage: all tokens in iOS Keychain / Android Keystore — not SharedPreferences
+Screenshot/screen recording prevention on: Cloud Drive, Plans (billing), Profile (personal data)
+ProGuard + obfuscation: enabled on Android release builds — prevents APK reverse engineering
+No sensitive data in logs: flutter_lints rule enforced, Logger stripped in production builds
+Minimum OS: iOS 14+ / Android 8+ — older OS versions have known unpatched vulnerabilities
+5.7 VPS Infrastructure Security
+OS: Ubuntu 22.04 LTS — unattended-upgrades enabled for automatic security patches
+Firewall (UFW): ONLY ports 22 (SSH), 80 (HTTP redirect), 443 (HTTPS) open — all else denied
+SSH: key-based authentication only — PasswordAuthentication no in /etc/ssh/sshd_config
+SSH port: changed from 22 to custom port — reduces automated scan exposure
+Fail2ban: bans IPs with 5+ failed SSH or API auth attempts for 1 hour
+Nginx: server_tokens off — Nginx version not disclosed in response headers
+Redis: requirepass set, bind 127.0.0.1, no external port
+Nextcloud: served on internal port (e.g., 8080), Nginx reverse proxy handles public HTTPS
+Supabase Docker stack: internal Docker network only — no container ports mapped to 0.0.0.0
+Intrusion detection: OSSEC or Wazuh — monitors file integrity and system calls
+Log aggregation: all Nginx, Laravel, PostgreSQL, Nextcloud logs centralised via Filebeat
+Backup: daily pg_dump + Nextcloud data dir snapshot — encrypted with GPG, stored on separate backup VPS
+SECTION 6
+User Roles & Screen Inventory
+6. User Roles & Permissions
+Role
+Access Scope
+Customer
+Self-service: plans, speed test, OTT, cloud drive (Nextcloud), support, network scan
+Sales Person
+Lead pipeline, KYC upload, commission tracker, customer bill history
+Service Technician
+Job cards, installation workflow, photo proof uploads, earnings & payout requests
+Admin / Manager
+Full system: all users, leads, jobs, finances, ads, payouts, audit logs
+6.1 Customer — 15 Screens
+#
+Screen
+Key Features
+1
+Splash / Loading
+Animated logo, app version check, token refresh
+2
+Login
+Phone OTP, Google OAuth, forgot password link
+3
+Home Dashboard
+Speedometer widget, plan card (speed/data/expiry), quick actions
+4
+Speed Test
+Animated gauge, download/upload/ping, result saved to PostgreSQL
+5
+Plans Screen
+Plan comparison cards, upgrade/downgrade request form + approval status
+6
+OTT Claims
+Horizontal OTT scroll, claim button, step-by-step how-to modal
+7
+Network Scanner
+Scan Now, connected devices (MAC/name), Trust/Block, 30-min auto-scan
+8
+Cloud Drive
+Nextcloud-backed: upload, folder view, storage bar, temp share links
+9
+Complaints & Support
+Raise ticket form, ticket history with status, file attachments
+10
+Profile & Settings
+Edit profile, change password, Fetch & Change Number, live location toggle
+11
+Modem / ONT Info
+Fetched MAC, signal strength, device type, IP address
+12
+Notification Settings
+Toggle per-category alerts (network, billing, promos)
+13
+Contact Us
+Office locations with map (OpenStreetMap), phone numbers
+14
+Success Confirmation
+Rocket launch animation on successful actions
+15
+Forgot Password
+OTP-based password recovery, 5-min OTP expiry
+6.2 Sales Person — 8 Screens
+#
+Screen
+Key Features
+1
+Login
+Admin-approved credentials, separate login portal
+2
+START Dashboard
+KPI cards, leaderboard rank, monthly target ring, New Lead FAB
+3
+Leads Pipeline
+Kanban: New > Contacted > KYC Uploaded > Approved > Installed
+4
+Lead Details
+Full lead info, threaded comments, call log, follow-up calendar, lead score
+5
+Create New Lead
+Customer form, ID & address proof upload (camera/gallery), KYC docs
+6
+Commission Tracker
+Closed leads, commission amounts, recurring commissions, withdrawable balance
+7
+Past Bill History
+Last 6 months bills for any created customer — helps upsell
+8
+Sales Profile
+Bank details, ID card, performance stats — controlled by admin
+6.3 Service Technician — 8 Screens
+#
+Screen
+Key Features
+1
+Login
+Admin-approved login, separate technician portal
+2
+START Dashboard
+Today's jobs map, pending/completed count, weekly earnings
+3
+Job Card
+Customer name/address, live map, installation checklist
+4
+Job Workflow
+Start > En Route > Arrived > In Progress > Complete — photo proof required
+5
+Earnings & Payout
+Daily/monthly earnings, payout request with bank/UPI/Aadhaar details
+6
+Job Rejection
+Reason dropdown, mandatory comment + photo, instant admin push notification
+7
+Chat & Updates
+Real-time chat thread with admin and customer per job
+8
+Customer Rating
+Post-job 1-5 star prompt to customer, technician behaviour comment
+6.4 Admin / Manager — 10 Screens
+#
+Screen
+Key Features
+1
+KPI Dashboard
+Active users, MRR, open complaints, technician efficiency, P&L overview
+2
+User Management
+Search/filter customers, VIP flag, block, view bills, audit history
+3
+Sales Person Management
+Approve/reject registrations, view ID & bank proof, performance stats
+4
+Technician Management
+Approve/reject, assign jobs (drag & drop or one-tap), efficiency metrics
+5
+Job Oversight Map
+Real-time technician location map, job statuses, ETA tracking
+6
+Lead Oversight
+All leads across all sales reps, pipeline view, conversion metrics
+7
+Commission & Payout
+Review payout requests, approve/reject, bulk processing
+8
+Ad Control Panel
+Create/schedule/toggle ads, target by role or plan, impression analytics
+9
+Profit & Expense Calc
+Revenue streams, operational expenses, net profit, monthly trend chart
+10
+User Approval Screen
+New sales/tech registrations with ID & bank doc verification
+SECTION 7
+REST API Endpoints Reference
+7. REST API Endpoints
+Base URL: https://api.yourdomain.com/api/v1/ — All requests require Accept: application/json header. Authenticated endpoints require Authorization: Bearer {token}. All responses follow the envelope: { success: bool, data: any, message: string }.
+7.1 Authentication
+Method
+Endpoint
+Description
+POST
+/auth/send-otp
+Send OTP — rate limited 3/15min per phone
+POST
+/auth/verify-otp
+Verify OTP → returns Bearer token + role
+POST
+/auth/google
+Google OAuth (Customer only) — validates server-side
+POST
+/auth/logout
+Revoke current device token
+POST
+/auth/forgot-password
+Send password reset OTP
+POST
+/auth/reset-password
+Reset password — OTP required, invalidates all tokens
+7.2 Customer Endpoints
+Method
+Endpoint
+Description
+GET
+/customer/dashboard
+Home data: plan, data usage, alerts, ad banner
+GET
+/customer/plan
+Current plan + available plans for comparison
+POST
+/customer/plan/change-request
+Submit upgrade/downgrade request
+GET
+/customer/ott-claims
+OTT platforms + claim status per platform
+POST
+/customer/ott-claims/{id}/claim
+Claim OTT benefit
+GET
+/customer/network-devices
+Connected devices from ONT via SNMP/TR-069
+POST
+/customer/network-devices/trust
+Trust a device by MAC address
+POST
+/customer/network-devices/block
+Block a device by MAC address
+GET
+/customer/cloud-drive/files
+List files from Nextcloud (proxied)
+POST
+/customer/cloud-drive/upload
+Upload file → streamed to Nextcloud WebDAV
+GET
+/customer/cloud-drive/files/{id}/link
+Generate 15-min Nextcloud share link
+DELETE
+/customer/cloud-drive/files/{id}
+Delete file from Nextcloud
+GET
+/customer/speed-test/history
+Past speed test results from PostgreSQL
+POST
+/customer/speed-test/save
+Save new speed test result
+GET
+/customer/complaints
+List support tickets
+POST
+/customer/complaints
+Create support ticket
+GET
+/customer/modem-info
+Fetch ONT/router MAC, signal, IP
+GET
+/customer/profile
+Get user profile
+PUT
+/customer/profile
+Update name, email, photo
+POST
+/customer/profile/change-number
+Fetch & change mobile number (OTP required)
+7.3 Sales Person Endpoints
+Method
+Endpoint
+Description
+GET
+/sales/dashboard
+KPI: today's leads, MTD commission, leaderboard rank
+GET
+/sales/leads
+All leads with stage/score filter
+POST
+/sales/leads
+Create lead + upload KYC documents to Nextcloud
+GET
+/sales/leads/{id}
+Lead detail + comment thread
+PUT
+/sales/leads/{id}/stage
+Move lead to next pipeline stage
+POST
+/sales/leads/{id}/comments
+Add comment/call log to lead
+GET
+/sales/commissions
+Commission list + withdrawable balance
+POST
+/sales/payout-request
+Request payout — goes to admin approval queue
+GET
+/sales/customer/{id}/bills
+Customer's last 6 months payment history
+7.4 Technician Endpoints
+Method
+Endpoint
+Description
+GET
+/technician/dashboard
+Today's jobs, earnings, completion rate
+GET
+/technician/jobs
+Assigned jobs list
+GET
+/technician/jobs/{id}
+Job card: checklist, customer address, map data
+POST
+/technician/jobs/{id}/start
+Mark job started — triggers customer ETA notification
+POST
+/technician/jobs/{id}/complete
+Mark complete — requires photo upload first
+POST
+/technician/jobs/{id}/reject
+Submit rejection: reason + mandatory photo
+POST
+/technician/jobs/{id}/photos
+Upload before/after photos → stored in Nextcloud
+GET
+/technician/earnings
+Earnings summary + payout history
+POST
+/technician/payout-request
+Request payout with bank/UPI/Aadhaar details
+GET
+/technician/jobs/{id}/chat
+Job chat thread
+POST
+/technician/jobs/{id}/chat
+Send chat message (real-time via Soketi)
+7.5 Admin Endpoints
+Method
+Endpoint
+Description
+GET
+/admin/dashboard
+Global KPI: MRR, users, complaints, P&L
+GET
+/admin/users
+All customers with search, filter, pagination
+PUT
+/admin/users/{id}/vip
+Set/unset VIP — auto-updates Nextcloud quota to 100GB
+PUT
+/admin/users/{id}/block
+Block/unblock user + revoke all tokens
+GET
+/admin/sales-persons
+Sales reps list + approval status
+POST
+/admin/sales-persons/{id}/approve
+Approve sales rep registration
+GET
+/admin/technicians
+Technicians list + job performance stats
+POST
+/admin/jobs/{id}/assign
+Assign job to technician
+GET
+/admin/payouts
+All pending payout requests
+POST
+/admin/payouts/{id}/approve
+Approve or reject payout
+GET
+/admin/ads
+Ad list
+POST
+/admin/ads
+Create ad with image upload to Nextcloud
+PUT
+/admin/ads/{id}
+Update / toggle ad active state
+GET
+/admin/financials
+Revenue, expenses, net profit data
+GET
+/admin/audit-logs
+Security audit log with filters (user, action, date)
+GET
+/admin/nextcloud/usage
+Nextcloud storage usage per user — from OCS API
+SECTION 8
+Real-Time Events & Push Notifications
+8. Real-Time & Push Notifications
+8.1 WebSocket Stack — Soketi (Self-Hosted Pusher)
+Why Soketi:  
+Soketi is a 100% self-hosted, open-source Pusher-compatible WebSocket server. Laravel Echo connects to it identically to Pusher — just change the host to your VPS. No per-message fees, no third-party data exposure.
+Config Key
+Value
+Soketi host
+wss://soketi.yourdomain.com:6001
+Laravel broadcast
+BROADCAST_DRIVER=pusher, PUSHER_HOST=soketi.yourdomain.com
+Flutter client
+pusher_channels_flutter package — same API as Pusher
+Authentication
+Private channels require valid Bearer token — server-side auth endpoint
+Nginx proxy
+Nginx proxies wss:// to Soketi on internal port 6001
+8.2 Real-Time WebSocket Events
+Event / Channel
+Trigger & Data Sent
+job.{job_id}
+Technician status updates → customer sees live progress bar
+technician.{tech_id}
+Location broadcast every 60s while en route → admin map update
+leads.{sales_person_id}
+Lead stage change → salesperson Kanban refreshes live
+chat.{job_id}
+New chat message → both technician and admin receive instantly
+network.{user_id}
+Network scan complete → device list updates in real-time
+admin.global
+New complaint, new payout request → admin dashboard badge updates
+notifications.{user_id}
+Any new notification → in-app badge and banner update
+8.3 FCM Push Notification Triggers
+Trigger
+Recipient & Message
+3+ unknown devices detected
+Customer: RED ALERT — Unknown devices found on your network
+New job assigned
+Technician: New installation job — Tap to view details
+Technician en route
+Customer: Your technician is on the way — ETA: X minutes
+Job completed
+Customer: Installation complete! Rate your technician
+Ticket status updated
+Customer: Support ticket #ID status updated
+Lead approved
+Sales: Lead approved! Commission of Rs. X unlocked
+Plan expires in 3 days
+Customer: Your plan expires in 3 days. Renew now
+OTT claim approved
+Customer: Your Netflix claim is ready to activate
+Payout approved
+Sales/Technician: Payout of Rs. X has been approved
+New device login detected
+User: New login from new device. Not you? Secure account now
+Speed below plan guarantee
+Customer: Current speed (X Mbps) is below your plan (Y Mbps)
+Rejection submitted
+Admin: Technician rejected job #{id} — review required
+SECTION 9
+Self-Hosted Deployment Architecture
+9. Deployment Architecture
+All services run on your own VPS infrastructure. The recommended setup uses Docker Compose for Supabase/PostgreSQL and Soketi, with Nginx as the reverse proxy for all services. Laravel runs natively on PHP-FPM for maximum performance.
+9.1 VPS Service Layout
+Service
+Port / Access / Notes
+Nginx (reverse proxy)
+Public: :80 (redirect), :443 (HTTPS) — routes to all services
+Laravel API (PHP-FPM)
+Internal: unix socket /run/php/php8.3-fpm.sock
+PostgreSQL (Supabase Docker)
+Internal: 127.0.0.1:5432 — no public access
+PgBouncer (connection pool)
+Internal: 127.0.0.1:6432 — Laravel connects here
+Redis 7
+Internal: 127.0.0.1:6379 — password protected
+Soketi (WebSocket)
+Internal: :6001 — Nginx proxies wss:// to this
+Nextcloud
+Internal: :8080 — Nginx proxies https://cloud.domain.com to this
+Supabase Studio (admin UI)
+Internal: :3000 — SSH tunnel only, no public exposure
+Netdata (monitoring)
+Internal: :19999 — SSH tunnel only
+Supervisor (queue workers)
+Manages 3 Laravel queue worker processes
+9.2 Nginx Virtual Hosts
+api.yourdomain.com
+Laravel API — PHP-FPM FastCGI, rate limiting, security headers
+cloud.yourdomain.com
+Nextcloud — reverse proxy to :8080, WebDAV passthrough
+admin.yourdomain.com
+React admin panel — serve static build, IP whitelist enforced
+soketi.yourdomain.com
+WebSocket proxy — wss:// upgrade to Soketi :6001
+9.3 CI/CD Pipeline
+Developer pushes to feature branch on GitHub
+GitHub Actions: runs PHPUnit tests + Flutter tests
+Code review: minimum 1 approver required before merge to main
+Merge to main: GitHub Actions SSH deploys to VPS
+Deploy script: git pull, composer install --no-dev, php artisan migrate, php artisan config:cache
+Queue workers restarted: php artisan queue:restart (zero-downtime — Supervisor respawns)
+Health check: curl api.yourdomain.com/api/v1/health — must return 200 within 5 seconds
+Deployment marked success — Slack/email notification sent
+9.4 Backup Strategy
+PostgreSQL: daily pg_dump at 02:00 UTC → GPG encrypted → rclone to backup VPS
+Nextcloud data: daily rsync of Nextcloud data directory → encrypted → backup VPS
+Laravel .env: manually backed up to password manager — never in Git
+Retention: daily backups kept for 30 days, weekly for 3 months, monthly for 1 year
+Restore tested monthly on a staging environment — untested backups are not backups
+SECTION 10
+Key Feature Specifications
+10. Key Feature Specifications
+10.1 Customer Cloud Drive (Nextcloud)
+On customer registration: Laravel calls Nextcloud OCS API to create a user account + set initial quota based on plan
+Upload flow: Flutter picks file → sends to Laravel API → Laravel streams to Nextcloud WebDAV → returns file record stored in PostgreSQL cloud_files table
+Download flow: Laravel calls Nextcloud share API → gets temporary URL (15 min) → returns to Flutter app
+Plan upgrade: Laravel updates Nextcloud quota via OCS API immediately upon plan approval
+VIP flag: sets Nextcloud quota to 100GB regardless of plan
+Expired plan: Laravel sets Nextcloud user to read-only mode via OCS quota limit
+10.2 Network Scanner
+Fetches connected devices via SNMP v2c or TR-069 protocol from customer's ONT/router
+Data returned: device name, MAC address (MACADDR type in PostgreSQL), IP address, connection type, last seen
+Trust: adds MAC to trusted list, removes from alert threshold count
+Block: sends SNMP SET command to router to blacklist MAC address
+Auto-scan: scheduled via Laravel queue job every 30 minutes per active user
+Alert rule: 3 or more unknown (untrusted, unblocked) devices → FCM push + red banner + create notification record in PostgreSQL
+10.3 Speed Test
+Uses iPerf3 against your self-hosted iPerf3 server or Cloudflare Speed Test API
+Results: download speed (Mbps), upload speed (Mbps), ping (ms), jitter (ms)
+Saved to speed_tests table in PostgreSQL with timestamp and user_id
+Comparison: result vs plan guaranteed speed — if below 80% of plan speed, push notification sent
+Historical chart: last 30 results shown as line graph in Flutter app
+10.4 Leads Pipeline (Sales)
+Stages: New → Contacted → KYC Uploaded → Approved → Installed → Churned
+Lead score: Hot (contacted < 24h, KYC ready), Warm (follow-up due), Cold (no response 7+ days) — auto-calculated
+KYC documents uploaded to Nextcloud under /Sales/KYC/{lead_id}/ folder — path saved in leads.kyc_doc_path
+Commission preview: calculated and shown when lead reaches Approved stage
+Monthly target ring: progress bar on dashboard showing MTD closed leads vs target
+Follow-up reminder: FCM push sent at scheduled follow_up_at timestamp via Laravel queue
+10.5 Technician Job Workflow
+States: Assigned → En Route → Arrived → In Progress → Completed / Rejected
+Mandatory checklist stored as JSONB: install ONT, configure router, run speed test, upload photos
+Photo proof: minimum 1 before + 1 after photo required — uploaded to Nextcloud /Jobs/{job_id}/
+ETA notification: when technician taps En Route, customer receives push with estimated time
+Offline mode: job details cached in device SQLite via Hive package, synced when connectivity restored
+Rejection: reason + photo + comment saved — admin receives immediate FCM push
+10.6 VIP / Permanent User
+Admin sets is_vip = true on the user record
+Immediate effects: Nextcloud quota upgraded to 100GB, priority support queue flag set, golden badge shown in app
+Support tickets: auto-set to priority status — sorted to top of admin queue
+Self-service tasks: can upload photos for minor issues, reducing technician visit requirement
+SECTION 11
+Testing & Quality Assurance
+11. Testing Strategy
+11.1 Backend (Laravel / PHPUnit)
+Unit tests: Service classes, Repository methods, NextcloudService mock tests
+Feature tests: Full API flow with RefreshDatabase trait — real PostgreSQL (test DB)
+Auth tests: OTP rate limiting, token issuance, role enforcement (403 cross-role)
+Nextcloud integration tests: mocked with WireMock — WebDAV and OCS API stubs
+RLS tests: verify PostgreSQL RLS blocks cross-user data access at DB level
+Target: 80%+ code coverage on Service and Controller layers
+11.2 Mobile (Flutter)
+Widget tests: all custom widgets in isolation
+Integration tests: login → dashboard → cloud drive upload → speed test — full flows
+Nextcloud proxy test: upload → verify file in Nextcloud → generate link → download
+Offline test: disable network → verify job checklist loads from local cache
+11.3 Security Testing
+OWASP Top 10 checklist review before each major release
+OWASP ZAP automated scan in CI/CD pipeline — blocks deployment if critical issues found
+PostgreSQL RLS penetration test: attempt cross-user data access via API — must return 403/empty
+Nextcloud access test: direct WebDAV access with customer credentials — must be rejected
+composer audit + npm audit: run on every PR — known CVEs block merge
+SECTION 12
+Compliance & Data Privacy
+12. Compliance & Data Privacy
+12.1 Data Retention
+Data Type
+Retention Period & Policy
+User account data
+Duration of account + 3 years post-deletion (soft delete)
+Complaints / support tickets
+5 years — regulatory requirement
+Financial records
+7 years — tax compliance (commissions, payouts, bills)
+Audit logs
+3 years rolling — purged by pg_cron after 3 years
+Speed test results
+1 year — anonymised after expiry
+Network device scan logs
+90-day rolling window — pg_cron deletes older records
+Nextcloud files
+Until user deletes + 30 days (recycle bin) + account closure
+OTP logs
+30 days — pg_cron job clears otp_logs WHERE expires_at < NOW() - INTERVAL '30 days'
+Location data
+90-day rolling — encrypted POINT column
+KYC documents (Nextcloud)
+5 years after account closure — regulatory requirement
+12.2 TRAI / DoT Compliance (India)
+CAF stored digitally with Aadhaar-verified KYC in Nextcloud + PostgreSQL
+Complaints resolved within 30 days as per TRAI Regulation 401
+Network neutrality: no throttling or prioritisation of specific content platforms
+Lawful interception capability maintained as required by DoT licensing terms
+13. Glossary
+Term
+Definition
+OCS API
+Nextcloud Provisioning API for managing users, quotas, and shares
+WebDAV
+Web Distributed Authoring and Versioning — HTTP-based file access protocol used by Nextcloud
+RLS
+Row Level Security — PostgreSQL feature that restricts which rows a user can read/write
+PgBouncer
+PostgreSQL connection pooler — reduces connection overhead for Laravel
+Soketi
+Open-source, self-hosted WebSocket server compatible with Pusher's API
+Sanctum
+Laravel's lightweight token authentication package for mobile APIs
+JSONB
+PostgreSQL's binary JSON storage type — indexed and queryable
+MACADDR
+PostgreSQL native type for MAC addresses — validates format at DB level
+pg_cron
+PostgreSQL extension for scheduling SQL jobs (cron inside the database)
+PgCrypto
+PostgreSQL extension for encryption functions (bcrypt, AES) at DB level
+GPG
+GNU Privacy Guard — asymmetric encryption used for backup files
+FCM
+Firebase Cloud Messaging — push notification service (only external service used)
+HSTS
+HTTP Strict Transport Security — forces HTTPS-only connections
+UFW
+Uncomplicated Firewall — Linux firewall controlling open server ports
+VIP User
+Permanently registered high-value customer: 100GB storage, priority support, golden badge
+TR-069
+Broadband Forum protocol for remote management of CPE devices (ONT/routers)
+14. Appendix — Development Milestones
+Phase
+Deliverables & Timeline
+Phase 1 — Foundation (Wk 1-3)
+VPS setup, Docker (Supabase/PostgreSQL/Soketi/Nextcloud), Laravel scaffold, DB migrations, Nginx config, SSL
+Phase 2 — Auth & Core API (Wk 4-5)
+OTP auth, role middleware, Sanctum tokens, PostgreSQL RLS policies, API skeleton
+Phase 3 — Customer App (Wk 6-9)
+All 15 customer screens: dashboard, plans, OTT, speed test, Nextcloud cloud drive integration
+Phase 4 — Sales App (Wk 10-12)
+Lead pipeline, KYC upload to Nextcloud, commission tracker, 8 sales screens
+Phase 5 — Technician App (Wk 13-15)
+Job workflow, Nextcloud photo upload, earnings, Soketi chat, 8 technician screens
+Phase 6 — Admin Panel (Wk 16-18)
+React admin dashboard, all 10 admin features, Nextcloud usage stats, ad control, financials
+Phase 7 — QA & Security (Wk 19-20)
+End-to-end tests, OWASP ZAP scan, RLS pen test, Nextcloud access test, performance tuning
+Phase 8 — Go Live (Wk 21)
+Production deploy, monitoring setup (Netdata, Sentry), backup verification, go-live
+15. Document Control
+Field
+Value
+Title
+Fiber Jet ISP Platform — SRS, Architecture & Security Document
+Version
+3.0 — Self-Hosted Stack Update
+Status
+Final Draft
+Classification
+CONFIDENTIAL — Internal Use Only
+Backend
+Laravel 11 (PHP 8.3) — RESTful API
+Database
+PostgreSQL 16 via Supabase (self-hosted on VPS)
+File Storage
+Nextcloud (self-hosted on VPS) — Customer Cloud Drive
+Real-time
+Soketi (self-hosted) + Laravel Echo — WebSocket events
+Mobile App
+Flutter 3.x — iOS & Android (single codebase)
+Admin Panel
+React 18 + Vite + TailwindCSS
+Total Screens
+41 screens across 4 roles
+Security
+OWASP Top 10, TLS 1.3, AES-256, bcrypt, RLS, Zero-Trust Architecture
+END OF DOCUMENT — FIBER JET ISP PLATFORM v3.0
+Self-Hosted Stack: Laravel 11 + Flutter + PostgreSQL (Supabase) + Nextcloud + Soketi
+This document is confidential and intended solely for authorized Fiber Jet personnel.

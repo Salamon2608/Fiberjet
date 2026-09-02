@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Lead History</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222110",
+                        "surface-dark": "#2c2b1b",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-hidden text-slate-900 dark:text-slate-100">
+<!-- Top App Bar -->
+<header class="flex-none bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-white/10 p-4 pb-2 z-10">
+<div class="flex items-center justify-between mb-2">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition-colors text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex-1 px-4 text-center">
+<h2 class="text-lg font-bold leading-tight tracking-tight">Rahul Sharma</h2>
+<div class="flex items-center justify-center gap-1.5 mt-0.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+<span class="text-xs font-medium text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">KYC Uploaded</span>
+</div>
+</div>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-200 dark:hover:bg-white/10 transition-colors text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+<!-- Quick Actions Toolbar -->
+<div class="grid grid-cols-3 gap-2 mt-2">
+<button class="flex flex-col items-center justify-center gap-1 p-2 rounded-lg bg-slate-100 dark:bg-surface-dark/50 hover:bg-slate-200 dark:hover:bg-surface-dark transition-all group">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">call</span>
+<span class="text-[10px] font-medium text-slate-500 dark:text-slate-400">Call</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 rounded-lg bg-slate-100 dark:bg-surface-dark/50 hover:bg-slate-200 dark:hover:bg-surface-dark transition-all group">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">schedule</span>
+<span class="text-[10px] font-medium text-slate-500 dark:text-slate-400">Schedule</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-1 p-2 rounded-lg bg-slate-100 dark:bg-surface-dark/50 hover:bg-slate-200 dark:hover:bg-surface-dark transition-all group">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400 group-hover:text-primary transition-colors">mail</span>
+<span class="text-[10px] font-medium text-slate-500 dark:text-slate-400">Email</span>
+</button>
+</div>
+</header>
+<!-- Timeline Content -->
+<main class="flex-1 overflow-y-auto p-4 space-y-6 scroll-smooth">
+<!-- Timeline Separator -->
+<div class="flex items-center justify-center py-4">
+<div class="h-px bg-slate-300 dark:bg-white/10 flex-1"></div>
+<span class="px-3 text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Today, Oct 24</span>
+<div class="h-px bg-slate-300 dark:bg-white/10 flex-1"></div>
+</div>
+<!-- Entry 1: System Event (Start) -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-surface-dark border border-slate-300 dark:border-white/10 shrink-0 z-10">
+<span class="material-symbols-outlined text-[16px] text-slate-500 dark:text-slate-400">add_task</span>
+</div>
+<div class="w-0.5 bg-slate-300 dark:bg-white/10 h-full -mb-6 group-last:hidden"></div>
+</div>
+<div class="flex-1 pb-2">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">Lead Created</h3>
+<span class="text-xs text-slate-500 dark:text-slate-500">10:00 AM</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400">Lead assigned to Rahul Sharma manually.</p>
+</div>
+</div>
+<!-- Entry 2: Phone Call Log -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800/50 shrink-0 z-10">
+<span class="material-symbols-outlined text-[16px] text-blue-600 dark:text-blue-400">phone_in_talk</span>
+</div>
+<div class="w-0.5 bg-slate-300 dark:bg-white/10 h-full -mb-6 group-last:hidden"></div>
+</div>
+<div class="flex-1 pb-2">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">Outbound Call</h3>
+<span class="text-xs text-slate-500 dark:text-slate-500">02:30 PM</span>
+</div>
+<div class="bg-slate-100 dark:bg-surface-dark p-3 rounded-lg rounded-tl-none border border-slate-200 dark:border-white/5 relative">
+<p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        Called customer. He is interested in the <span class="text-primary font-medium dark:text-primary">Fiber Ultra</span> plan. Asked for installation details and pricing confirmation.
+                    </p>
+<div class="mt-2 flex gap-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300">
+                            Interested
+                        </span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-200 text-slate-700 dark:bg-white/10 dark:text-slate-400">
+                            ~ 4m 32s
+                        </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Entry 3: KYC Upload -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800/50 shrink-0 z-10">
+<span class="material-symbols-outlined text-[16px] text-emerald-600 dark:text-emerald-400">verified_user</span>
+</div>
+<div class="w-0.5 bg-slate-300 dark:bg-white/10 h-full -mb-6 group-last:hidden"></div>
+</div>
+<div class="flex-1 pb-2">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">KYC Documents Uploaded</h3>
+<span class="text-xs text-slate-500 dark:text-slate-500">04:45 PM</span>
+</div>
+<div class="bg-slate-100 dark:bg-surface-dark p-3 rounded-lg rounded-tl-none border border-slate-200 dark:border-white/5">
+<div class="flex items-center gap-3 p-2 bg-white dark:bg-black/20 rounded border border-slate-200 dark:border-white/5 cursor-pointer hover:border-primary/50 transition-colors">
+<div class="w-10 h-10 rounded bg-red-100 dark:bg-red-900/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-red-500">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">Aadhar_Card_Front.pdf</p>
+<p class="text-xs text-slate-500 dark:text-slate-500">2.4 MB • PDF</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+<div class="flex items-center gap-3 p-2 mt-2 bg-white dark:bg-black/20 rounded border border-slate-200 dark:border-white/5 cursor-pointer hover:border-primary/50 transition-colors">
+<div class="w-10 h-10 rounded bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-blue-500">image</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">Passport_Photo.jpg</p>
+<p class="text-xs text-slate-500 dark:text-slate-500">1.1 MB • JPG</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Entry 4: System Note -->
+<div class="flex gap-4 group">
+<div class="flex flex-col items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-surface-dark border border-slate-300 dark:border-white/10 shrink-0 z-10">
+<span class="material-symbols-outlined text-[16px] text-slate-500 dark:text-slate-400">info</span>
+</div>
+</div>
+<div class="flex-1 pb-6">
+<div class="flex items-center justify-between mb-1">
+<h3 class="text-sm font-semibold text-slate-800 dark:text-slate-200">Verification Pending</h3>
+<span class="text-xs text-slate-500 dark:text-slate-500">04:46 PM</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 italic">Waiting for backend verification of uploaded documents.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="flex-none bg-background-light dark:bg-surface-dark border-t border-slate-200 dark:border-white/10 p-3 pb-safe z-20">
+<div class="flex items-end gap-2 max-w-4xl mx-auto">
+<button class="p-2 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors h-10 w-10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<div class="flex-1 bg-white dark:bg-black/30 rounded-2xl border border-slate-300 dark:border-white/10 focus-within:border-primary dark:focus-within:border-primary transition-colors flex items-center min-h-[40px] shadow-sm">
+<textarea class="w-full bg-transparent border-none focus:ring-0 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 py-2.5 px-3 resize-none max-h-24" placeholder="Add a note or comment..." rows="1"></textarea>
+</div>
+<button class="h-10 w-10 rounded-full bg-primary hover:bg-yellow-400 text-background-dark flex items-center justify-center shrink-0 shadow-lg shadow-primary/20 transition-all active:scale-95">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</footer>
+</body></html>

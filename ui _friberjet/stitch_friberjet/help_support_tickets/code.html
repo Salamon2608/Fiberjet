@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Support &amp; Tickets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "primary-dark": "#d9c705",
+                        "navy": "#0f172a", 
+                        "navy-light": "#1e293b",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222110",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased text-navy dark:text-gray-100 flex flex-col min-h-screen">
+<!-- Top Navigation -->
+<div class="sticky top-0 z-10 flex items-center justify-between bg-white dark:bg-navy px-4 py-3 shadow-sm border-b border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-gray-100 dark:hover:bg-navy-light transition-colors">
+<span class="material-symbols-outlined text-navy dark:text-white" style="font-size: 24px;">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold text-navy dark:text-white">Help &amp; Support</h1>
+</div>
+<button class="relative">
+<span class="material-symbols-outlined text-navy dark:text-white" style="font-size: 24px;">notifications</span>
+<span class="absolute top-0 right-0 h-2.5 w-2.5 rounded-full bg-primary ring-2 ring-white dark:ring-navy"></span>
+</button>
+</div>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-md mx-auto overflow-y-auto pb-24">
+<!-- Search Section -->
+<div class="bg-white dark:bg-navy p-4 pb-6">
+<h2 class="text-2xl font-bold text-navy dark:text-white mb-1">How can we help?</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Find articles or troubleshoot instantly</p>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+<span class="material-symbols-outlined text-gray-400" style="font-size: 24px;">search</span>
+</div>
+<input class="block w-full p-3 pl-10 text-sm text-navy bg-background-light dark:bg-navy-light border-none rounded-xl focus:ring-2 focus:ring-primary focus:outline-none placeholder-gray-400 dark:text-white dark:placeholder-gray-500 shadow-sm" placeholder="Search Help Center..." type="text"/>
+</div>
+</div>
+<!-- Active Tickets Section -->
+<div class="px-4 pt-6">
+<div class="flex items-center justify-between mb-3">
+<h3 class="text-base font-bold text-navy dark:text-white">Active Tickets</h3>
+<a class="text-sm font-medium text-blue-600 hover:text-blue-700 dark:text-primary" href="#">View History</a>
+</div>
+<div class="space-y-3">
+<!-- Ticket Card 1: Active -->
+<div class="bg-white dark:bg-navy rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-navy dark:text-white" style="font-size: 20px;">speed</span>
+<span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">#TK-8832</span>
+</div>
+<span class="inline-flex items-center gap-1 rounded-full bg-primary/20 px-2 py-1 text-xs font-medium text-yellow-800 dark:text-yellow-200">
+<span class="h-1.5 w-1.5 rounded-full bg-yellow-600 dark:bg-primary"></span>
+                            Tech Assigned
+                        </span>
+</div>
+<h4 class="text-base font-semibold text-navy dark:text-white mb-1">Slow Connection Speed</h4>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-1 mb-3">Technician is scheduled to visit your premise.</p>
+<div class="flex items-center justify-between pt-2 border-t border-gray-50 dark:border-gray-800">
+<span class="text-xs text-gray-400">Updated: Oct 24, 2:30 PM</span>
+<button class="text-xs font-medium text-navy dark:text-primary flex items-center gap-1">
+                            Details <span class="material-symbols-outlined" style="font-size: 16px;">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Ticket Card 2: Resolved -->
+<div class="bg-white dark:bg-navy rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-800 opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-navy dark:text-white" style="font-size: 20px;">receipt_long</span>
+<span class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">#TK-8801</span>
+</div>
+<span class="inline-flex items-center gap-1 rounded-full bg-green-100 dark:bg-green-900/30 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-300">
+<span class="material-symbols-outlined" style="font-size: 14px;">check_circle</span>
+                            Resolved
+                        </span>
+</div>
+<h4 class="text-base font-semibold text-navy dark:text-white mb-1">October Invoice Query</h4>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-1 mb-3">Credit applied to your next billing cycle.</p>
+<div class="flex items-center justify-between pt-2 border-t border-gray-50 dark:border-gray-800">
+<span class="text-xs text-gray-400">Closed: Oct 20, 9:00 AM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Raise New Issue Form -->
+<div class="px-4 pt-8 pb-4">
+<h3 class="text-lg font-bold text-navy dark:text-white mb-4">Raise New Issue</h3>
+<div class="bg-white dark:bg-navy rounded-xl p-5 shadow-sm border border-gray-100 dark:border-gray-800 space-y-5">
+<!-- Category Selector -->
+<div>
+<label class="block text-sm font-medium text-navy dark:text-gray-300 mb-2">Category</label>
+<div class="relative">
+<select class="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-background-light dark:bg-navy-light text-navy dark:text-white py-3 pl-4 pr-10 text-sm focus:border-primary focus:ring-primary appearance-none">
+<option>Technical Support</option>
+<option>Billing &amp; Accounts</option>
+<option>Connection Speed</option>
+<option>Equipment Upgrade</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+<span class="material-symbols-outlined" style="font-size: 20px;">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Description Input -->
+<div>
+<label class="block text-sm font-medium text-navy dark:text-gray-300 mb-2">Describe the problem</label>
+<textarea class="block w-full rounded-lg border-gray-200 dark:border-gray-700 bg-background-light dark:bg-navy-light text-navy dark:text-white py-3 px-4 text-sm focus:border-primary focus:ring-primary min-h-[120px] resize-none placeholder-gray-400" placeholder="Please provide details (e.g. My internet drops every 10 minutes especially during rain...)"></textarea>
+</div>
+<!-- Attachment (Optional Visual Polish) -->
+<div>
+<button class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-navy dark:hover:text-white transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">attach_file</span>
+                         Attach Screenshot (Optional)
+                    </button>
+</div>
+<!-- Submit Button -->
+<button class="w-full flex justify-center items-center gap-2 bg-primary hover:bg-primary-dark text-navy font-semibold py-3.5 px-4 rounded-xl shadow-sm transition-colors mt-2">
+                    Submit Ticket
+                    <span class="material-symbols-outlined" style="font-size: 20px;">send</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-20 border-t border-[#f5f4f0] dark:border-gray-800 bg-white dark:bg-navy px-4 pb-safe pt-2">
+<div class="flex justify-between items-end pb-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-400 dark:text-gray-500 hover:text-navy dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 24px;">home</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-400 dark:text-gray-500 hover:text-navy dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 24px;">monitoring</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Usage</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-gray-400 dark:text-gray-500 hover:text-navy dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 24px;">receipt_long</span>
+<p class="text-xs font-medium leading-normal tracking-[0.015em]">Billing</p>
+</a>
+<!-- Active State -->
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-navy dark:text-primary" href="#">
+<div class="bg-primary/20 dark:bg-primary/10 rounded-full px-4 py-0.5 mb-0.5">
+<span class="material-symbols-outlined text-navy dark:text-primary" style="font-size: 24px; font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<p class="text-xs font-bold leading-normal tracking-[0.015em]">Support</p>
+</a>
+</div>
+<!-- Safe Area Spacer for iOS Home Indicator -->
+<div class="h-4 w-full"></div>
+</div>
+</body></html>

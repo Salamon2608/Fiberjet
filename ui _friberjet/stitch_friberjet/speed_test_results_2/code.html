@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Speed Test Results - Fiber Jet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#fdc212",
+              "background-light": "#f8f8f5", // Not used in this dark mode design but kept for config compliance
+              "background-dark": "#0a1120", // Deep Navy Blue as requested
+              "surface-dark": "#131b2e", // Slightly lighter navy for cards
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            boxShadow: {
+              "glow": "0 0 20px rgba(253, 194, 18, 0.3)",
+              "glow-strong": "0 0 40px rgba(253, 194, 18, 0.5)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom gauge gradient stroke */
+        .gauge-arc {
+            stroke-dasharray: 75 100; /* Approximate 75% fill */
+            stroke-linecap: round;
+            transform: rotate(135deg);
+            transform-origin: center;
+        }
+        .gauge-bg {
+            stroke-dasharray: 75 100;
+            stroke-linecap: round;
+            transform: rotate(135deg);
+            transform-origin: center;
+        }
+        .needle {
+            transform-origin: center;
+            transform: rotate(45deg); /* Pointing to ~450/high speed */
+            filter: drop-shadow(0 0 8px #fdc212);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-slate-100 min-h-screen flex flex-col relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b from-[#1a233b] to-transparent pointer-events-none opacity-50 z-0"></div>
+<div class="absolute -top-[100px] left-1/2 transform -translate-x-1/2 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] z-0"></div>
+<!-- Header -->
+<header class="relative z-10 flex items-center justify-between px-6 py-6 w-full">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-dark text-slate-300 hover:text-white transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-wide uppercase text-slate-300">Results</h1>
+<div class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-dark text-primary shadow-glow">
+<span class="material-symbols-outlined filled">rocket_launch</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="relative z-10 flex-1 flex flex-col items-center justify-center px-6 pb-24 w-full max-w-md mx-auto">
+<!-- Speedometer Section -->
+<div class="relative w-72 h-72 mb-8 flex items-center justify-center">
+<!-- SVG Gauge -->
+<svg class="w-full h-full absolute inset-0" viewbox="0 0 100 100">
+<!-- Background Arc -->
+<circle class="gauge-bg text-surface-dark stroke-current" cx="50" cy="50" fill="none" r="42" stroke-width="8"></circle>
+<!-- Active Arc (Gradient) -->
+<defs>
+<lineargradient id="gaugeGradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#fb923c;stop-opacity:1"></stop> <!-- Orange -->
+<stop offset="100%" style="stop-color:#fdc212;stop-opacity:1"></stop> <!-- Yellow -->
+</lineargradient>
+</defs>
+<circle class="gauge-arc stroke-[url(#gaugeGradient)] drop-shadow-[0_0_10px_rgba(253,194,18,0.4)]" cx="50" cy="50" fill="none" r="42" stroke-width="8"></circle>
+<!-- Ticks -->
+<g class="text-slate-600">
+<line stroke="currentColor" stroke-width="1" transform="rotate(-135 50 50)" x1="50" x2="50" y1="12" y2="16"></line>
+<line stroke="currentColor" stroke-width="1" transform="rotate(-90 50 50)" x1="50" x2="50" y1="12" y2="16"></line>
+<line stroke="currentColor" stroke-width="1" transform="rotate(-45 50 50)" x1="50" x2="50" y1="12" y2="16"></line>
+<line stroke="currentColor" stroke-width="1" transform="rotate(0 50 50)" x1="50" x2="50" y1="12" y2="16"></line>
+<line stroke="currentColor" stroke-width="1" transform="rotate(45 50 50)" x1="50" x2="50" y1="12" y2="16"></line>
+<line stroke="currentColor" stroke-width="1" transform="rotate(90 50 50)" x1="50" x2="50" y1="12" y2="16"></line>
+<line stroke="currentColor" stroke-width="1" transform="rotate(135 50 50)" x1="50" x2="50" y1="12" y2="16"></line>
+</g>
+<!-- Needle (Visual representation) -->
+<g class="needle transition-transform duration-1000 ease-out">
+<circle class="fill-surface-dark stroke-primary stroke-2" cx="50" cy="50" r="3"></circle>
+<path class="fill-primary" d="M 48 50 L 50 10 L 52 50 Z"></path>
+</g>
+</svg>
+<!-- Center Text -->
+<div class="absolute flex flex-col items-center justify-center text-center pt-8">
+<span class="text-sm font-medium text-slate-400 mb-1">DOWNLOAD</span>
+<div class="text-6xl font-bold text-white tracking-tighter drop-shadow-lg">450</div>
+<div class="text-primary font-medium tracking-widest text-sm mt-1">MBPS</div>
+</div>
+<!-- Connection Status -->
+<div class="absolute -bottom-4 bg-surface-dark border border-slate-700/50 rounded-full px-4 py-1.5 flex items-center gap-2 shadow-lg">
+<div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]"></div>
+<span class="text-xs font-medium text-slate-300">Fiber Jet Boston</span>
+</div>
+</div>
+<!-- Metric Cards -->
+<div class="grid grid-cols-3 gap-3 w-full mt-8">
+<!-- Ping -->
+<div class="bg-surface-dark rounded-2xl p-4 flex flex-col items-center justify-center border border-slate-800/60 shadow-lg">
+<div class="flex items-center gap-1 mb-2 text-slate-400">
+<span class="material-symbols-outlined text-[18px]">network_check</span>
+<span class="text-xs font-medium uppercase">Ping</span>
+</div>
+<p class="text-xl font-bold text-white">12 <span class="text-sm font-normal text-slate-500">ms</span></p>
+</div>
+<!-- Download (Highlighted) -->
+<div class="bg-surface-dark relative overflow-hidden rounded-2xl p-4 flex flex-col items-center justify-center border border-primary/30 shadow-[0_0_15px_rgba(253,194,18,0.1)]">
+<!-- Subtle background glow -->
+<div class="absolute inset-0 bg-primary/5"></div>
+<div class="relative z-10 flex items-center gap-1 mb-2 text-primary">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span class="text-xs font-medium uppercase">Down</span>
+</div>
+<p class="text-xl font-bold text-white relative z-10">480 <span class="text-sm font-normal text-slate-500">Mbps</span></p>
+</div>
+<!-- Upload -->
+<div class="bg-surface-dark rounded-2xl p-4 flex flex-col items-center justify-center border border-slate-800/60 shadow-lg">
+<div class="flex items-center gap-1 mb-2 text-slate-400">
+<span class="material-symbols-outlined text-[18px]">upload</span>
+<span class="text-xs font-medium uppercase">Upload</span>
+</div>
+<p class="text-xl font-bold text-white">120 <span class="text-sm font-normal text-slate-500">Mbps</span></p>
+</div>
+</div>
+<!-- Additional Stats (Jitter / Loss) -->
+<div class="grid grid-cols-2 gap-4 w-full mt-4 px-2">
+<div class="flex justify-between items-center border-b border-slate-800 pb-2">
+<span class="text-xs text-slate-500 font-medium">Jitter</span>
+<span class="text-sm text-slate-300 font-bold">2 ms</span>
+</div>
+<div class="flex justify-between items-center border-b border-slate-800 pb-2">
+<span class="text-xs text-slate-500 font-medium">Loss</span>
+<span class="text-sm text-slate-300 font-bold">0%</span>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent z-20">
+<button class="w-full bg-primary hover:bg-[#e0ac10] active:scale-95 transition-all duration-200 text-background-dark h-14 rounded-full flex items-center justify-center gap-2 font-bold text-lg shadow-glow-strong">
+<span class="material-symbols-outlined">restart_alt</span>
+            Test Again
+        </button>
+</div>
+<!-- Bottom Navigation (Simplified to match request context) -->
+<nav class="bg-surface-dark border-t border-slate-800 px-6 py-2 flex justify-between items-end relative z-30 pb-safe">
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors py-2 flex-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary py-2 flex-1 relative" href="#">
+<div class="absolute -top-10 bg-surface-dark p-2 rounded-full border border-slate-800">
+<div class="bg-primary text-background-dark rounded-full p-2 shadow-glow">
+<span class="material-symbols-outlined">speed</span>
+</div>
+</div>
+<span class="text-[10px] font-medium tracking-wide mt-6">Speed</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors py-2 flex-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium tracking-wide">Settings</span>
+</a>
+</nav>
+<!-- Safe area spacing for iOS home indicator -->
+<div class="h-6 bg-surface-dark w-full"></div>
+</body></html>

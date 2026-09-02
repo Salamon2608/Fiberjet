@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Sales Pipeline</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fdb612",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231d0f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .kanban-column { min-width: 320px; width: 85vw; max-width: 400px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-20 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-3">
+<div class="flex items-center justify-between max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="bg-primary rounded-lg p-1 flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark font-bold">bolt</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Fiber Jet</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary/20 border border-primary/40 overflow-hidden ml-2">
+<img alt="Sales representative profile" class="w-full h-full object-cover" data-alt="Professional headshot of a sales representative" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMg-Ak12YlY_GK_VcR2-vNLmgR3Wq8MOic6Aa-jLtgZd-QWJzFKk3xCRidEmHNxUdkkCbeZbMLhPAgYO4u3bEOYdIbB3wYALbwigoT9D9fXuHTovq4yFkyM6x089DB17oUBC9MfBcX2KqNNYEAVSj4Tgl_-afO4YYNP9mCi4W37c7usTW4934E8hEpYEryGqZpxM27x-CQUzvNA7tb2kaekkLBTIUJM3IiE6kFokGOxTOSKNxZ4VdFZlDkdNKYpOTU1iSx6fnY2bfd"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Kanban Content -->
+<main class="flex-1 overflow-hidden flex flex-col">
+<!-- Dashboard Stats/Tabs -->
+<div class="px-4 py-4 overflow-x-auto no-scrollbar flex gap-4 border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-background-dark/50">
+<div class="flex flex-col min-w-[100px]">
+<span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Total Pipeline</span>
+<span class="text-lg font-bold">48 Leads</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 self-center"></div>
+<div class="flex flex-col min-w-[100px]">
+<span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">Pending KYC</span>
+<span class="text-lg font-bold text-primary">05</span>
+</div>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 self-center"></div>
+<div class="flex flex-col min-w-[100px]">
+<span class="text-[10px] uppercase tracking-wider text-slate-500 font-bold">New Today</span>
+<span class="text-lg font-bold text-green-500">+08</span>
+</div>
+</div>
+<!-- Kanban Board Container -->
+<div class="flex-1 overflow-x-auto overflow-y-hidden flex p-4 gap-4 no-scrollbar">
+<!-- COLUMN: NEW -->
+<section class="kanban-column flex flex-col gap-4 h-full">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+<h2 class="font-bold text-slate-700 dark:text-slate-300">New</h2>
+<span class="bg-slate-200 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold text-slate-500">8</span>
+</div>
+<button class="text-primary hover:text-primary/80">
+<span class="material-symbols-outlined text-lg">add_circle</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 no-scrollbar pb-20">
+<!-- Card 1 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border-l-4 border-blue-500 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">Johnathan Wick</h3>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">PREMIUM</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Fiber Jet Giga Plan</p>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-3 mt-auto">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-xs font-medium">2h ago</span>
+</div>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+                                DETAILS <span class="material-symbols-outlined text-xs">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border-l-4 border-blue-500/50 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">Sarah Connor</h3>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">BASIC</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Fiber Jet Home Plan</p>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-3 mt-auto">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-xs font-medium">5h ago</span>
+</div>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+                                DETAILS <span class="material-symbols-outlined text-xs">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- COLUMN: CONTACTED -->
+<section class="kanban-column flex flex-col gap-4 h-full">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<h2 class="font-bold text-slate-700 dark:text-slate-300">Contacted</h2>
+<span class="bg-slate-200 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold text-slate-500">12</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 no-scrollbar pb-20">
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border-l-4 border-amber-500 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">Michael Scott</h3>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">PREMIUM</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Enterprise Jet Max</p>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-3 mt-auto">
+<div class="flex items-center gap-1 text-red-500">
+<span class="material-symbols-outlined text-sm font-bold">priority_high</span>
+<span class="text-xs font-bold">3d in stage</span>
+</div>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+                                DETAILS <span class="material-symbols-outlined text-xs">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- COLUMN: KYC UPLOADED -->
+<section class="kanban-column flex flex-col gap-4 h-full">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-purple-500"></span>
+<h2 class="font-bold text-slate-700 dark:text-slate-300">KYC Uploaded</h2>
+<span class="bg-slate-200 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold text-slate-500">5</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 no-scrollbar pb-20">
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border-l-4 border-purple-500 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">Elena Gilbert</h3>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">PREMIUM</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-3">Fiber Jet Home Plus</p>
+<div class="flex gap-2 mb-4">
+<div class="bg-slate-100 dark:bg-slate-800 p-1 rounded flex items-center">
+<span class="material-symbols-outlined text-sm text-purple-500">description</span>
+</div>
+<div class="bg-slate-100 dark:bg-slate-800 p-1 rounded flex items-center">
+<span class="material-symbols-outlined text-sm text-purple-500">badge</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-3 mt-auto">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-xs font-medium">18h in stage</span>
+</div>
+<button class="text-xs font-bold text-primary flex items-center gap-1">
+                                REVIEW <span class="material-symbols-outlined text-xs">verified</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- COLUMN: APPROVED -->
+<section class="kanban-column flex flex-col gap-4 h-full">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<h2 class="font-bold text-slate-700 dark:text-slate-300">Approved</h2>
+<span class="bg-slate-200 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold text-slate-500">3</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 no-scrollbar pb-20">
+<div class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border-l-4 border-green-500 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">Bruce Wayne</h3>
+<span class="text-[10px] font-bold px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">ULTRA</span>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Mansion High-Speed Link</p>
+<div class="flex items-center justify-between border-t border-slate-100 dark:border-slate-800 pt-3 mt-auto">
+<div class="flex items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-xs font-medium">1d in stage</span>
+</div>
+<button class="bg-primary text-background-dark text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tight">
+                                SCHED. INSTALL
+                            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- COLUMN: INSTALLED -->
+<section class="kanban-column flex flex-col gap-4 h-full">
+<div class="flex items-center justify-between px-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+<h2 class="font-bold text-slate-700 dark:text-slate-300">Installed</h2>
+<span class="bg-slate-200 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold text-slate-500">20</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto space-y-3 no-scrollbar pb-20">
+<div class="bg-slate-50 dark:bg-slate-900/40 p-4 rounded-xl shadow-sm border-l-4 border-slate-300 opacity-70">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-bold text-base">Diana Prince</h3>
+<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+</div>
+<p class="text-xs text-slate-500 mb-4">Completed 2 days ago</p>
+<button class="w-full py-1 border border-slate-200 dark:border-slate-700 rounded text-[10px] font-bold text-slate-500">ARCHIVE</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pb-safe pt-2 px-6 flex justify-between items-center z-30">
+<a class="flex flex-col items-center gap-1 text-primary group" href="#">
+<span class="material-symbols-outlined font-bold transition-transform group-active:scale-90" style="font-variation-settings: 'FILL' 1">view_kanban</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Pipeline</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Leads</span>
+</a>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-primary text-background-dark rounded-full shadow-lg shadow-primary/30 flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
+<span class="material-symbols-outlined text-3xl font-bold">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Reports</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tight">Config</span>
+</a>
+</nav>
+<!-- Mobile Safe Area Spacer -->
+<div class="h-4 bg-white dark:bg-slate-900"></div>
+</body></html>

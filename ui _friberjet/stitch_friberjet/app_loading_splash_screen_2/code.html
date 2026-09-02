@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Splash Screen</title>
+<!-- Material Symbols Link -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9b515", // Yellow
+                        "background-light": "#f8f7f5", 
+                        "background-dark": "#0A2540", // Deep navy blue override for this specific theme request
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'tech-grid': "radial-gradient(circle at center, transparent 0%, #0A2540 70%), linear-gradient(0deg, rgba(249, 181, 21, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(249, 181, 21, 0.03) 1px, transparent 1px)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles just for layout specific needs */
+        .bg-tech-pattern {
+            background-size: 100% 100%, 40px 40px, 40px 40px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center justify-between overflow-hidden relative selection:bg-primary selection:text-background-dark">
+<!-- Background Tech Grid Pattern -->
+<div class="absolute inset-0 bg-tech-pattern bg-tech-grid pointer-events-none z-0"></div>
+<!-- Top Spacer for centering -->
+<div class="flex-1"></div>
+<!-- Main Content Area -->
+<div class="relative z-10 w-full max-w-xs flex flex-col items-center gap-12 px-6">
+<!-- Logo Section -->
+<div class="flex flex-col items-center gap-6">
+<div class="relative group">
+<!-- Glowing effect behind logo -->
+<div class="absolute -inset-4 bg-primary/20 rounded-full blur-xl opacity-75 animate-pulse"></div>
+<!-- Logo Container -->
+<div class="relative w-32 h-32 flex items-center justify-center rounded-2xl bg-[#0A2540] border border-primary/20 shadow-[0_0_30px_rgba(249,181,21,0.15)]">
+<span class="material-symbols-outlined text-primary text-6xl" style="font-size: 4rem;">rocket_launch</span>
+<!-- Decorative circuit accents -->
+<div class="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary/40"></div>
+<div class="absolute bottom-2 left-2 w-2 h-2 rounded-full bg-primary/40"></div>
+<div class="absolute -right-1 top-1/2 w-1 h-8 bg-primary/20 rounded-full"></div>
+<div class="absolute -left-1 top-1/2 w-1 h-8 bg-primary/20 rounded-full"></div>
+</div>
+</div>
+<!-- Brand Name -->
+<div class="text-center">
+<h1 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white uppercase">
+                    Fiber <span class="text-primary">Jet</span>
+</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 tracking-[0.2em] uppercase opacity-80">Hyper-Speed Internet</p>
+</div>
+</div>
+<!-- Progress Section -->
+<div class="w-full flex flex-col gap-3">
+<div class="flex justify-between items-end px-1">
+<p class="text-slate-600 dark:text-slate-300 text-sm font-medium animate-pulse">Initializing connection...</p>
+<p class="text-primary text-sm font-bold font-mono">65%</p>
+</div>
+<div class="relative h-2 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<!-- Background track glow -->
+<div class="absolute inset-0 bg-primary/5"></div>
+<!-- Active Progress Bar -->
+<div class="h-full bg-primary rounded-full relative w-[65%] shadow-[0_0_15px_rgba(249,181,21,0.8)]">
+<!-- Speed lines effect on the bar -->
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full opacity-50"></div>
+<!-- Leading edge glint -->
+<div class="absolute right-0 top-0 bottom-0 w-2 bg-white/80 blur-[1px]"></div>
+</div>
+</div>
+<!-- Technical details (decorative) -->
+<div class="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 font-mono mt-1">
+<span>SERVER: US-EAST-1</span>
+<span>PING: 12ms</span>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer / Footer -->
+<div class="flex-1 flex flex-col justify-end w-full pb-8 z-10">
+<div class="flex flex-col items-center gap-1">
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Powered by Fiber Jet</p>
+<div class="flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500 font-medium tracking-wide opacity-80">
+<span>Fast</span>
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+<span>Secure</span>
+<span class="w-1 h-1 rounded-full bg-primary"></span>
+<span>Reliable</span>
+</div>
+</div>
+<!-- Safe area padding for phones -->
+<div class="h-4"></div>
+</div>
+</body></html>

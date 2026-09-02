@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Technician Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FBBF24", // Golden Yellow from 'JET'
+                        secondary: "#1E3A8A", // Navy Blue from 'FIBER'
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#111827",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1F2937",
+                        "text-light": "#1F2937",
+                        "text-dark": "#F9FAFB",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.map-container {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAv2Ln50PJTkUvI7d9rY294pVe_zlMO5cWQVf2CH3IqPiCVVY5bZHJvx6y2zihBrj9Xi07W1T_wWJ96MfyIoFBAchTOX9ROdWHK_6tdy6Du-cktYdor0AnTdlvOKN5_W0QiBfnUd_yclR6R8hwgX560QDbpTHljsY91y9ITJJ5tf6bNb0_8jUPiOsm6XVPgl-eJFpp8wg0-1Qw6va4aP6-Lzhdo8vfgXRnEONupbwVVM3MZKpFvW28bc2_QfsFThYFzfs-2ljcMV85f);
+    background-size: cover;
+    background-position: center
+    }.hide-scroll::-webkit-scrollbar {
+    display: none
+    }
+.hide-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-text-light dark:text-text-dark antialiased transition-colors duration-200">
+<div class="max-w-md mx-auto min-h-screen relative flex flex-col pb-20">
+<header class="flex justify-between items-center px-6 py-5 bg-card-light dark:bg-card-dark shadow-sm sticky top-0 z-30">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center overflow-hidden">
+<img alt="Fiber Jet Logo" class="w-8 h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA58N3oObdccnrDQmtaKays8u31Xw_CLLfdfu0FK4kiiP1Vo7O7aMC7UMCTeVO_kkGkUlGJt3vF9wgBSoMA_L6UKbgGxeV-JE33LIjeUPM2VB-4-kpAZw9CcdsX8FHCZjqn83G_jww9hOQJsPiKfhnvcWgJpszuu9QnA4BzMd21WYWDdZkgkGzfXpU4H_2rYuL3h5faUpznSy7dM0VK58ZBAmL6EBIdp8UMyVXv_l2dmIfIR-bq1dIhwmZDEq5ljcyJDcnJBdkQCVr2"/>
+</div>
+<div>
+<h1 class="text-xl font-bold text-secondary dark:text-white leading-tight tracking-tight">FIBER<span class="text-primary">JET</span></h1>
+<p class="text-xs text-gray-500 dark:text-gray-400">Technician Panel</p>
+</div>
+</div>
+<button class="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+<span class="material-icons-round text-gray-600 dark:text-gray-300">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-gray-800"></span>
+</button>
+</header>
+<main class="flex-1 px-4 pt-6 space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] opacity-10 transform rotate-12 group-hover:scale-110 transition-transform">
+<span class="material-icons-round text-6xl text-secondary dark:text-primary">check_circle</span>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Jobs Done</p>
+<div class="flex items-baseline space-x-1 mt-1">
+<span class="text-2xl font-bold text-secondary dark:text-white">4</span>
+<span class="text-sm text-gray-400">/ 6</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-green-500 h-1.5 rounded-full" style="width: 66%"></div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute right-[-10px] top-[-10px] opacity-10 transform rotate-12 group-hover:scale-110 transition-transform">
+<span class="material-icons-round text-6xl text-primary">payments</span>
+</div>
+<p class="text-sm text-gray-500 dark:text-gray-400 font-medium">Daily Earnings</p>
+<div class="flex items-center mt-1">
+<span class="text-2xl font-bold text-secondary dark:text-white">$85</span>
+</div>
+<p class="text-xs text-green-600 dark:text-green-400 mt-2 flex items-center">
+<span class="material-icons-round text-sm mr-1">trending_up</span> +12% vs yst
+                    </p>
+</div>
+</div>
+<section class="space-y-3">
+<div class="flex justify-between items-center px-1">
+<h2 class="text-lg font-bold text-secondary dark:text-white">Today's Route</h2>
+<button class="text-xs font-semibold text-primary hover:text-yellow-600 transition">Open Map</button>
+</div>
+<div class="w-full h-48 rounded-2xl overflow-hidden shadow-md relative map-container border border-gray-200 dark:border-gray-700">
+<div class="absolute inset-0 bg-secondary/10 dark:bg-black/30 backdrop-blur-[1px]"></div>
+<div class="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-green-500 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow mb-1">Done</div>
+<span class="material-icons-round text-green-600 text-3xl drop-shadow-md">location_on</span>
+</div>
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10 animate-bounce">
+<div class="bg-secondary text-white text-[10px] font-bold px-2 py-0.5 rounded shadow mb-1 whitespace-nowrap">Current: 123 Maple</div>
+<span class="material-icons-round text-primary text-4xl drop-shadow-lg filter drop-shadow">navigation</span>
+</div>
+<div class="absolute bottom-1/3 right-1/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center opacity-70">
+<div class="bg-gray-500 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow mb-1">Pending</div>
+<span class="material-icons-round text-gray-600 dark:text-gray-300 text-3xl drop-shadow-md">location_on</span>
+</div>
+</div>
+</section>
+<section class="space-y-3">
+<h2 class="text-lg font-bold text-secondary dark:text-white px-1">Active Job</h2>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-5 shadow-lg border-l-4 border-primary relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full -mr-8 -mt-8 pointer-events-none"></div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-200 mb-2">
+<span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-1.5 animate-pulse"></span>
+                                In Progress
+                            </span>
+<h3 class="text-xl font-bold text-gray-900 dark:text-white">Installation</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1 flex items-center">
+<span class="material-icons-round text-sm mr-1">place</span> 123 Maple St, Springfield
+                            </p>
+</div>
+<div class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500 dark:text-gray-300">
+<span class="material-icons-round">router</span>
+</div>
+</div>
+<div class="flex items-center space-x-3 mb-6 p-3 bg-background-light dark:bg-background-dark rounded-lg">
+<div class="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-xs font-bold text-gray-700 dark:text-white">JD</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-gray-900 dark:text-white">John Doe</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Standard Fiber Plan • 500Mbps</p>
+</div>
+<button class="w-8 h-8 rounded-full bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 flex items-center justify-center text-primary shadow-sm">
+<span class="material-icons-round text-sm">call</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-3 relative z-10">
+<button class="flex items-center justify-center space-x-2 w-full py-3 bg-secondary hover:bg-blue-900 text-white rounded-xl shadow-md transition transform active:scale-95">
+<span class="material-icons-round text-lg">navigation</span>
+<span class="font-medium text-sm">Navigate</span>
+</button>
+<button class="flex items-center justify-center space-x-2 w-full py-3 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-gray-700 dark:text-white border border-gray-200 dark:border-gray-600 rounded-xl shadow-sm transition transform active:scale-95">
+<span class="material-icons-round text-lg text-primary">playlist_add_check</span>
+<span class="font-medium text-sm">Checklist</span>
+</button>
+</div>
+</div>
+</section>
+<section class="space-y-3 pb-8">
+<h2 class="text-lg font-bold text-secondary dark:text-white px-1">Next Up</h2>
+<div class="bg-card-light dark:bg-card-dark rounded-xl p-4 shadow-sm border border-gray-100 dark:border-gray-700 flex items-center justify-between opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-icons-round">build</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-900 dark:text-white">Maintenance</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">456 Oak Avenue</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-medium text-gray-500 dark:text-gray-400">Est. 2:30 PM</p>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-card-light dark:bg-card-dark border-t border-gray-200 dark:border-gray-700 px-6 py-3 flex justify-between items-center z-40 max-w-md mx-auto">
+<button class="flex flex-col items-center space-y-1 text-secondary dark:text-primary">
+<span class="material-icons-round">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-gray-400 hover:text-secondary dark:hover:text-white transition">
+<span class="material-icons-round">map</span>
+<span class="text-[10px] font-medium">Route</span>
+</button>
+<div class="relative -top-8">
+<button class="w-14 h-14 bg-gradient-to-r from-secondary to-blue-700 rounded-full flex items-center justify-center shadow-lg shadow-blue-900/30 text-white transform hover:scale-105 transition border-4 border-background-light dark:border-background-dark">
+<span class="material-icons-round text-2xl">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center space-y-1 text-gray-400 hover:text-secondary dark:hover:text-white transition">
+<span class="material-icons-round">history</span>
+<span class="text-[10px] font-medium">History</span>
+</button>
+<button class="flex flex-col items-center space-y-1 text-gray-400 hover:text-secondary dark:hover:text-white transition">
+<span class="material-icons-round">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</nav>
+</div>
+<script>
+        // Simple dark mode toggle for demonstration purpose
+        // In a real app, this would respect system preference or user setting
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+</body></html>

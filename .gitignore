@@ -1,0 +1,46 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+
+# IDE & Editor files
+*.iml
+*.ipr
+*.iws
+.idea/
+.vscode/
+
+# Build and Tooling
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+bin/
+obj/
+node_modules/
+dist/
+coverage/
+
+# Environment and Secrets
+.env
+.env.local
+*.secret
+
+# Temporary extracted files
+temp_doc/
+temp_docx_extract/
+
+# Android / iOS build artifacts
+apps/mobile/android/app/debug
+apps/mobile/android/app/profile
+apps/mobile/android/app/release

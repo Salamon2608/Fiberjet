@@ -1,0 +1,8 @@
+name: fiberjet_workspace
+description: A melos workspace for FiberJet project
+
+environment:
+  sdk: ^3.0.0
+
+dev_dependencies:
+  melos: ^5.0.0

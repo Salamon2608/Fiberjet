@@ -1,0 +1,24 @@
+name: backend
+description: A new Dart Frog application
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  bcrypt: ^1.2.0
+  dart_frog: ^1.1.0
+  dart_frog_web_socket: ^1.0.3
+  dart_jsonwebtoken: ^3.4.0
+  fiberjet_shared:
+    path: ../fiberjet_shared
+  path: ^1.9.1
+  postgres: ^3.5.9
+  shelf_cors_headers: ^0.1.5
+  shelf_multipart: 1.0.0
+
+dev_dependencies:
+  dart_frog_lint: ^0.1.0
+  mocktail: ^1.0.0
+  test: ^1.0.0

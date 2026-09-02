@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Mission Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fdb612",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231d0f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Space Grotesk", sans-serif
+    }
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(253, 182, 18, 0.2)
+    }
+.map-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCwSy7QQE2YcX8UxfF2BfppuI6CKvYEki88C6v8K7ndtV4uMElEKfOeVNeWM11OpujgAY6TG-9PYkAGXtpio_a_ZXotS1tslNbKTCKOG1cYFeByPkrkKOt0cFL-ZpgDvb5xnuQJAkjiOFoPya-ctNUu6eun6J8EU_6c62kGIl0K78-xWcwygPRo3fT5uZFv8_kFEspOy4BI7e_d38jmv0SPNJqESQmnOG60rtRmYNtROsH22Miu1RMsvOq41ehh_q2nqNTTUWKnCwxX);
+    background-size: cover;
+    background-position: center
+    }
+.marker-pulse {
+    box-shadow: 0 0 0 0 rgba(253, 182, 18, 0.7);
+    animation: pulse 2s infinite
+    }
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(253, 182, 18, 0.7);
+        } 70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(253, 182, 18, 0);
+        } 100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(253, 182, 18, 0);
+        }
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 overflow-hidden h-screen flex flex-col">
+<!-- Header Overlay -->
+<header class="fixed top-0 left-0 right-0 z-50 p-4 pointer-events-none">
+<div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
+<div class="glass-panel p-2 px-4 rounded-xl flex items-center gap-3 pointer-events-auto shadow-lg">
+<img alt="Fiber Jet Logo" class="h-8 w-8 rounded-lg" data-alt="Fiber Jet high-tech brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV_jlPR5YAWrpU6igYWc5KtXDyKz8jd_6tp0RR7OIlo9koBV0yvlV4k90QifOzPqyeBgg1YYEj537Qniu8kmLByZczFLEPGgIMW_EGxNmga8Z2XqmZWONaUcHv21VXNNsm4god9pcQU-w3nLCu3ozbS4DmTForv55-R-HZ9jCy4BDX23I4zxbgztFxpCrEjunVtnPVOk7DfUo5LzxpqCctqgqgxDPq7rlbUYaEeREYYmgQ4dZcNTThFUXNI1umTMbG8h69jxtcsnlJ"/>
+<div class="flex flex-col">
+<span class="text-xs font-bold uppercase tracking-widest text-primary leading-none">Mission Control</span>
+<span class="text-lg font-bold tracking-tight">FIBER JET LIVE</span>
+</div>
+</div>
+<div class="flex-1 max-w-md pointer-events-auto">
+<div class="glass-panel flex items-center px-4 py-2 rounded-xl shadow-lg">
+<span class="material-symbols-outlined text-slate-400 mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-sm font-medium placeholder-slate-400" placeholder="Search technicians or active nodes..." type="text"/>
+<div class="flex items-center gap-1 bg-primary/10 px-2 py-1 rounded text-[10px] font-bold text-primary border border-primary/20">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                        FILTERS
+                    </div>
+</div>
+</div>
+<div class="flex gap-2 pointer-events-auto">
+<button class="glass-panel p-2 rounded-xl shadow-lg hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+</button>
+<button class="glass-panel p-2 rounded-xl shadow-lg hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-slate-600">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Map View -->
+<main class="flex-1 relative overflow-hidden map-bg" data-location="San Francisco">
+<!-- Technician Markers -->
+<!-- Marker 1 -->
+<div class="absolute top-[30%] left-[40%] group cursor-pointer">
+<div class="relative flex flex-col items-center">
+<div class="bg-white border-2 border-primary rounded-lg px-2 py-1 mb-2 shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="text-[10px] font-bold text-slate-900 whitespace-nowrap">MARCUS V. (IDLE)</p>
+</div>
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-slate-900 shadow-2xl marker-pulse">
+<span class="material-symbols-outlined fill-1">rocket_launch</span>
+</div>
+</div>
+</div>
+<!-- Marker 2 -->
+<div class="absolute top-[55%] left-[65%] group cursor-pointer">
+<div class="relative flex flex-col items-center">
+<div class="bg-white border-2 border-slate-200 rounded-lg px-2 py-1 mb-2 shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="text-[10px] font-bold text-slate-900 whitespace-nowrap">SARAH K. (ON JOB)</p>
+</div>
+<div class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center text-white shadow-2xl">
+<span class="material-symbols-outlined fill-1 text-primary">person</span>
+</div>
+</div>
+</div>
+<!-- Marker 3 -->
+<div class="absolute top-[45%] left-[20%] group cursor-pointer">
+<div class="relative flex flex-col items-center">
+<div class="bg-white border-2 border-primary rounded-lg px-2 py-1 mb-2 shadow-xl opacity-0 group-hover:opacity-100 transition-opacity">
+<p class="text-[10px] font-bold text-slate-900 whitespace-nowrap">LEO T. (IDLE)</p>
+</div>
+<div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-slate-900 shadow-2xl marker-pulse">
+<span class="material-symbols-outlined fill-1">rocket_launch</span>
+</div>
+</div>
+</div>
+<!-- Map Navigation Controls -->
+<div class="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-2">
+<button class="glass-panel w-12 h-12 rounded-xl shadow-lg flex items-center justify-center hover:bg-white text-slate-600">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="glass-panel w-12 h-12 rounded-xl shadow-lg flex items-center justify-center hover:bg-white text-slate-600">
+<span class="material-symbols-outlined">remove</span>
+</button>
+<div class="h-4"></div>
+<button class="bg-primary w-12 h-12 rounded-xl shadow-lg flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="glass-panel w-12 h-12 rounded-xl shadow-lg flex items-center justify-center hover:bg-white text-slate-600">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+<!-- Status Legend -->
+<div class="absolute left-6 bottom-[30%] glass-panel p-4 rounded-xl shadow-xl w-48">
+<h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">Live Feed</h3>
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary marker-pulse"></div>
+<span class="text-xs font-medium">8 Technicians Idle</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-slate-400"></div>
+<span class="text-xs font-medium">12 Active Jobs</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-red-500"></div>
+<span class="text-xs font-medium">3 Priority Alerts</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Sheet: Unassigned Jobs -->
+<section class="glass-panel shadow-[0_-10px_30px_rgba(0,0,0,0.05)] rounded-t-[2rem] z-[60] relative transition-all duration-300">
+<!-- Handle -->
+<div class="flex justify-center p-3 cursor-grab">
+<div class="w-12 h-1.5 rounded-full bg-slate-300"></div>
+</div>
+<div class="px-6 pb-6">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<h2 class="text-lg font-bold tracking-tight">Unassigned Jobs</h2>
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded text-xs font-bold">14 PENDING</span>
+</div>
+<p class="text-[10px] font-medium text-slate-400 uppercase tracking-widest italic">Tip: Drag job to technician to assign</p>
+</div>
+<!-- Job List Horizontal Scroll -->
+<div class="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+<!-- Job Card 1 -->
+<div class="min-w-[300px] bg-white border border-slate-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">
+<div class="flex justify-between items-start mb-3">
+<span class="font-mono text-[10px] bg-slate-100 px-2 py-1 rounded">#FJ-88291</span>
+<span class="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-1 rounded">URGENT</span>
+</div>
+<h4 class="font-bold text-sm mb-1">High-Speed Fiber Install</h4>
+<p class="text-xs text-slate-500 mb-4 truncate">244 Mission St, San Francisco</p>
+<div class="flex items-center justify-between border-t border-slate-50 pt-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
+<span class="text-[10px] font-bold text-slate-600">45m Pending</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">distance</span>
+<span class="text-[10px] font-bold text-slate-600">1.2 mi away</span>
+</div>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="min-w-[300px] bg-white border border-slate-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">
+<div class="flex justify-between items-start mb-3">
+<span class="font-mono text-[10px] bg-slate-100 px-2 py-1 rounded">#FJ-88295</span>
+<span class="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-1 rounded">ROUTINE</span>
+</div>
+<h4 class="font-bold text-sm mb-1">Router Configuration</h4>
+<p class="text-xs text-slate-500 mb-4 truncate">888 Market St, San Francisco</p>
+<div class="flex items-center justify-between border-t border-slate-50 pt-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
+<span class="text-[10px] font-bold text-slate-600">1h 12m Pending</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">distance</span>
+<span class="text-[10px] font-bold text-slate-600">3.5 mi away</span>
+</div>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="min-w-[300px] bg-white border border-slate-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">
+<div class="flex justify-between items-start mb-3">
+<span class="font-mono text-[10px] bg-slate-100 px-2 py-1 rounded">#FJ-88301</span>
+<span class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded">UPGRADE</span>
+</div>
+<h4 class="font-bold text-sm mb-1">Commercial Node Expansion</h4>
+<p class="text-xs text-slate-500 mb-4 truncate">Pier 39, Fisherman's Wharf</p>
+<div class="flex items-center justify-between border-t border-slate-50 pt-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
+<span class="text-[10px] font-bold text-slate-600">2h 05m Pending</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">distance</span>
+<span class="text-[10px] font-bold text-slate-600">0.8 mi away</span>
+</div>
+</div>
+</div>
+<!-- Job Card 4 -->
+<div class="min-w-[300px] bg-white border border-slate-100 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">
+<div class="flex justify-between items-start mb-3">
+<span class="font-mono text-[10px] bg-slate-100 px-2 py-1 rounded">#FJ-88312</span>
+<span class="text-[10px] font-bold text-red-500 bg-red-50 px-2 py-1 rounded">URGENT</span>
+</div>
+<h4 class="font-bold text-sm mb-1">Service Outage Repair</h4>
+<p class="text-xs text-slate-500 mb-4 truncate">500 Castro St, San Francisco</p>
+<div class="flex items-center justify-between border-t border-slate-50 pt-3">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
+<span class="text-[10px] font-bold text-slate-600">15m Pending</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-slate-400">distance</span>
+<span class="text-[10px] font-bold text-slate-600">4.2 mi away</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Navigation Bar -->
+<nav class="bg-white border-t border-slate-100 px-6 py-2 pb-6 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">map</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Live Map</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600" href="#">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Job List</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Analytics</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600" href="#">
+<span class="material-symbols-outlined">engineering</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Techs</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Settings</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,4 @@
+# melos_managed_dependency_overrides: fiberjet_shared
+dependency_overrides:
+  fiberjet_shared:
+    path: ..\\..\\packages\\fiberjet_shared

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet - Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222110",
+                        "navy-deep": "#0a192f",
+                        "navy-accent": "#112240",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .navy-gradient {
+            background: linear-gradient(180deg, #0a192f 0%, #112240 100%);
+        }
+        .yellow-glow {
+            box-shadow: 0 0 15px rgba(242, 223, 13, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="navy-gradient text-white px-6 pt-10 pb-20 rounded-b-[2rem] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-48 h-48 bg-primary/5 rounded-full -ml-20 -mb-20 blur-2xl"></div>
+<div class="relative flex flex-col items-center">
+<div class="mb-6">
+<img alt="Fiber Jet Corporate Logo" class="h-10 w-auto" data-alt="Fiber Jet high-tech brand logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt1VXglLuzJ-BlxZ2oEeu0AITahMJMmG_bUDrU17tdFZLfEgOYJcfsYxeN0C2YFrAyaZDu3Q5h5AYpGV6qt0Nk1UWFBKXMxHdpqWkBQ9lIEdPoPZBx41K9LyBSOj39dn49ZBDo26a3mcr1wxVfnl9sUh7VD9etPad_bYfIUTvbYKAoVdDXYdbV255j0bokkPWruWaGSK8Id318NbtteAyVy67jyvF0DiLwiRU1NT-Vj3H3RyWMjuE6vX1BzYabkvPJTkQCH6dIHzei"/>
+</div>
+<div class="flex items-center gap-2 bg-primary/20 px-4 py-1.5 rounded-full border border-primary/30">
+<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Service Complete</span>
+</div>
+<h1 class="text-3xl font-black mt-4 text-center">Job Well Done!</h1>
+<p class="text-slate-300 text-sm mt-1 opacity-80">Your high-speed connection is now live.</p>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 px-6 -mt-12 z-10 max-w-lg mx-auto w-full pb-10">
+<!-- Technician Profile Card -->
+<div class="glass-panel rounded-xl p-5 shadow-xl flex items-center gap-4 mb-8">
+<div class="relative">
+<div class="w-20 h-20 rounded-full border-4 border-white shadow-md overflow-hidden bg-slate-200">
+<img alt="Alex M. Technician" class="w-full h-full object-cover" data-alt="Professional male technician portrait alex" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBypbo5Ygm6kn3a_i79WmDDqFCQe8OX1AM9qbcps2somQ3VO-R3mvWwLuftsqPpEFa2MrGSrmGNvevkKgph1bYhpf6FTgFP-Zv8_Byr4V_4XOSnzy2caIhXoPWU8o_b0OE2GsMaJEHsBV9DljEszaP1pJJeAqsm_y4qSHkitqxZ4zzk0LSpmM-FYnXOKwGE1ybZECxJ2qqhv80WEc5Py15tjCIUlvzdzCxRza4wfMJDpnp0O1lvGQyHGeZBFnVHQFsahr1wh1JoF3hu"/>
+</div>
+<div class="absolute -bottom-1 -right-1 bg-primary rounded-full p-1 border-2 border-white">
+<span class="material-symbols-outlined text-[14px] text-navy-deep font-bold">verified</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="text-xs text-slate-500 font-semibold uppercase tracking-tighter">Your Specialist</p>
+<h2 class="text-xl font-bold text-navy-deep">Alex M.</h2>
+<div class="flex items-center gap-1 mt-0.5">
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1">star</span>
+</div>
+<span class="text-xs font-bold text-navy-deep">5.0</span>
+<span class="text-xs text-slate-400 font-medium ml-1">(420 reviews)</span>
+</div>
+</div>
+</div>
+<!-- Rating Section -->
+<section class="flex flex-col items-center text-center space-y-6">
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-slate-900 dark:text-slate-100">How was your service today?</h3>
+<p class="text-sm text-slate-500">Tap a star to rate Alex's performance</p>
+</div>
+<!-- Interactive Stars -->
+<div class="flex gap-2">
+<button class="text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1, 'wght' 200">star</span>
+</button>
+<button class="text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1, 'wght' 200">star</span>
+</button>
+<button class="text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1, 'wght' 200">star</span>
+</button>
+<button class="text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1, 'wght' 200">star</span>
+</button>
+<button class="text-slate-200 hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 0, 'wght' 200">star</span>
+</button>
+</div>
+<!-- Feedback Area -->
+<div class="w-full space-y-3">
+<label class="block text-left text-sm font-bold text-navy-deep dark:text-slate-300 ml-1">Comments on technician behavior</label>
+<textarea class="w-full rounded-xl border-slate-200 bg-white dark:bg-navy-accent dark:border-slate-700 dark:text-white p-4 text-sm focus:ring-primary focus:border-primary placeholder:text-slate-400" placeholder="How was your experience with Alex? He was very polite and..." rows="4"></textarea>
+</div>
+<!-- Submit Button -->
+<div class="w-full pt-4">
+<button class="w-full bg-primary text-navy-deep font-black py-4 rounded-xl text-lg uppercase tracking-wider yellow-glow hover:brightness-105 active:scale-[0.98] transition-all">
+                    Submit Feedback
+                </button>
+<p class="text-[11px] text-slate-400 mt-4 leading-relaxed">
+                    Your feedback is encrypted and helps us improve the Fiber Jet experience for everyone in your area.
+                </p>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Contextual) -->
+<nav class="mt-auto border-t border-slate-100 bg-white dark:bg-navy-deep dark:border-navy-accent px-6 py-4 flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">house</span>
+<span class="text-[10px] font-bold uppercase">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">poll</span>
+<span class="text-[10px] font-bold uppercase">Activity</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="text-[10px] font-bold uppercase">Support</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase">Profile</span>
+</a>
+</nav>
+</body></html>

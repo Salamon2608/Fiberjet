@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification Settings - Fiber Jet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fdb612",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231d0f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100 font-display">
+<div class="max-w-md mx-auto min-h-screen flex flex-col bg-white dark:bg-zinc-900 shadow-xl overflow-hidden relative">
+<!-- Header -->
+<div class="flex items-center bg-white dark:bg-zinc-900 p-4 border-b border-slate-100 dark:border-zinc-800 sticky top-0 z-10">
+<button class="text-slate-900 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-zinc-800 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold flex-1 text-center pr-10">Notification Settings</h2>
+</div>
+<div class="flex-1 overflow-y-auto">
+<!-- Hero Header Section -->
+<div class="p-6 bg-primary/10 dark:bg-primary/5">
+<h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Fiber Jet Preferences</h1>
+<p class="text-slate-600 dark:text-slate-400 text-sm mt-1">Manage how and when you hear from us regarding your high-speed connection.</p>
+</div>
+<!-- Activity & Alerts Section -->
+<div class="px-4 py-6">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 px-2">Account &amp; Performance</h3>
+<div class="space-y-1">
+<!-- Network Alerts -->
+<div class="flex items-center gap-4 bg-white dark:bg-zinc-900 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+<div class="flex items-center justify-center rounded-lg bg-primary/20 text-primary shrink-0 size-12">
+<span class="material-symbols-outlined">language</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-base font-semibold leading-none mb-1">Network Alerts</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Stay updated on maintenance and outages in your area.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-slate-200 dark:bg-zinc-700 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+<!-- Security Warnings -->
+<div class="flex items-center gap-4 bg-white dark:bg-zinc-900 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+<div class="flex items-center justify-center rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 shrink-0 size-12">
+<span class="material-symbols-outlined">shield_lock</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-base font-semibold leading-none mb-1">Security Warnings</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Alerts regarding unauthorized logins or network threats.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-slate-200 dark:bg-zinc-700 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<hr class="mx-6 border-slate-100 dark:border-zinc-800"/>
+<!-- Billing & Offers Section -->
+<div class="px-4 py-6">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 px-2">Billing &amp; Updates</h3>
+<div class="space-y-1">
+<!-- Bill Reminders -->
+<div class="flex items-center gap-4 bg-white dark:bg-zinc-900 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-400 shrink-0 size-12">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-base font-semibold leading-none mb-1">Bill Reminders</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Get notified when your monthly invoice is ready or due.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-slate-200 dark:bg-zinc-700 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+<!-- Promotional Offers -->
+<div class="flex items-center gap-4 bg-white dark:bg-zinc-900 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+<div class="flex items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-slate-400 shrink-0 size-12">
+<span class="material-symbols-outlined">sell</span>
+</div>
+<div class="flex flex-col flex-1">
+<p class="text-base font-semibold leading-none mb-1">Promotional Offers</p>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Exclusive deals and Fiber Jet speed upgrades.</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-none bg-slate-200 dark:bg-zinc-700 p-0.5 transition-colors has-[:checked]:bg-primary">
+<input class="invisible absolute peer" type="checkbox"/>
+<div class="h-full w-[27px] rounded-full bg-white shadow-sm transition-transform peer-checked:translate-x-5"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Channels Section -->
+<div class="px-6 pb-20">
+<div class="bg-slate-50 dark:bg-zinc-800/50 p-4 rounded-2xl">
+<h4 class="text-sm font-bold mb-3">Delivery Channels</h4>
+<div class="flex justify-between items-center py-2">
+<span class="text-sm">Push Notifications</span>
+<span class="text-xs font-medium text-primary bg-primary/10 px-2 py-1 rounded">Active</span>
+</div>
+<div class="flex justify-between items-center py-2 border-t border-slate-200/50 dark:border-zinc-700">
+<span class="text-sm">Email</span>
+<span class="text-xs font-medium text-slate-400 dark:text-zinc-500">fiber@user.com</span>
+</div>
+<div class="flex justify-between items-center py-2 border-t border-slate-200/50 dark:border-zinc-700">
+<span class="text-sm">SMS</span>
+<span class="text-xs font-medium text-slate-400 dark:text-zinc-500">+1 (555) 0123</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Bar -->
+<div class="bg-white dark:bg-zinc-900 border-t border-slate-100 dark:border-zinc-800 flex justify-between px-6 py-3">
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-zinc-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-zinc-500" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-[10px] font-medium">Usage</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-zinc-500" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="text-[10px] font-medium">Billing</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 dark:text-zinc-500" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="text-[10px] font-medium">Support</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-bold" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</a>
+</div>
+</div>
+</body></html>

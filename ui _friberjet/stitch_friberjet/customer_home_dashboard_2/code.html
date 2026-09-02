@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Customer Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FDB813", // Vibrant Yellow
+                        secondary: "#0A2540", // Navy Blue
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#111827",
+                        "card-light": "#FFFFFF",
+                        "card-dark": "#1F2937",
+                        "text-light": "#1F2937",
+                        "text-dark": "#F9FAFB",
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>
+        .speedometer-bg {
+            background: conic-gradient(from 180deg at 50% 50%, #FDB813 0deg, #FDB813 220deg, #E5E7EB 220deg, #E5E7EB 360deg);
+        }
+        .dark .speedometer-bg {
+            background: conic-gradient(from 180deg at 50% 50%, #FDB813 0deg, #FDB813 220deg, #374151 220deg, #374151 360deg);
+        }.gauge-mask {
+            mask-image: radial-gradient(transparent 55%, black 56%);
+            -webkit-mask-image: radial-gradient(transparent 55%, black 56%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-sans min-h-screen flex flex-col antialiased transition-colors duration-200">
+<header class="bg-secondary dark:bg-[#081e33] pt-12 pb-20 px-6 rounded-b-[2.5rem] shadow-lg relative z-10">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center space-x-3">
+<div class="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center text-white border border-white/30 backdrop-blur-sm">
+<span class="material-icons-round text-xl">person</span>
+</div>
+<div>
+<p class="text-xs text-gray-300 font-medium uppercase tracking-wider">Welcome back,</p>
+<h1 class="text-xl font-bold text-white">Alex Johnson</h1>
+</div>
+</div>
+<div class="h-12 w-12 bg-white rounded-xl flex items-center justify-center shadow-md">
+<img alt="Fiber Jet Rocket Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAezZP6ssa9ywlV93lilvmZb7wMSK6JHlBzKfqvWZZ9WpmigW_cFod1-mOP7q9CzwFxGMuE5suiFgQgwIy8HJoDRar_pCV0dfM8OLbYTq8h-rPlTkHJged25r6WQWg18X4mbIXsDrxwDde_TfftVpngtTNXaaRkS2S3_CMp95iRQ_iFa5if-G10_hBq0TB8oI-hdUUzRWoPyCYZh1mqXA4YP6-REOwGRZOV_ENg27bJQLCNVZrYyjMuR3T7w6V6cfj6fkm8X8m10XMZ" style="filter: hue-rotate(45deg);"/>
+</div>
+</div>
+<div class="flex justify-between items-center text-white/80 text-sm px-2">
+<div class="flex items-center gap-1">
+<span class="material-icons-round text-base text-primary">wifi</span>
+<span>Fiber Jet_5G</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="h-2 w-2 rounded-full bg-green-400 animate-pulse"></div>
+<span>Online</span>
+</div>
+</div>
+</header>
+<main class="flex-1 px-6 -mt-14 pb-8 space-y-6">
+<div class="bg-card-light dark:bg-card-dark rounded-3xl p-6 shadow-xl relative overflow-hidden text-center">
+<h2 class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">Current Speed</h2>
+<div class="relative w-48 h-48 mx-auto flex items-center justify-center">
+<div class="absolute inset-0 rounded-full border-[12px] border-gray-200 dark:border-gray-700"></div>
+<svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+<circle class="text-primary" cx="50" cy="50" fill="transparent" r="44" stroke="currentColor" stroke-dasharray="276" stroke-dashoffset="60" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="flex flex-col items-center z-10">
+<span class="text-5xl font-black text-secondary dark:text-white tracking-tighter">485</span>
+<span class="text-sm font-medium text-gray-400 mt-1">Mbps</span>
+</div>
+</div>
+<div class="flex justify-center items-center gap-8 mt-4 text-xs font-medium text-gray-500 dark:text-gray-400">
+<div class="flex flex-col items-center">
+<span class="material-icons-round text-green-500 mb-1">arrow_downward</span>
+<span>Download</span>
+<span class="text-secondary dark:text-white font-bold">485 Mbps</span>
+</div>
+<div class="w-px h-8 bg-gray-200 dark:bg-gray-700"></div>
+<div class="flex flex-col items-center">
+<span class="material-icons-round text-blue-500 mb-1">arrow_upward</span>
+<span>Upload</span>
+<span class="text-secondary dark:text-white font-bold">120 Mbps</span>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-lg font-bold text-secondary dark:text-white">Fiber Ultra</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400">Premium 500Mbps Plan</p>
+</div>
+<span class="bg-secondary/10 dark:bg-white/10 text-secondary dark:text-white text-xs font-bold px-3 py-1 rounded-full">Active</span>
+</div>
+<div class="mb-2">
+<div class="flex justify-between text-xs font-medium mb-1">
+<span class="text-gray-600 dark:text-gray-300">Data Used</span>
+<span class="text-primary">80%</span>
+</div>
+<div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
+<div class="bg-primary h-2.5 rounded-full" style="width: 80%"></div>
+</div>
+<div class="flex justify-between text-[10px] text-gray-400 mt-1">
+<span>800GB Used</span>
+<span>1000GB Limit</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-700 flex items-center text-xs text-gray-500 dark:text-gray-400">
+<span class="material-icons-round text-base mr-1">schedule</span>
+                Expires in <strong class="text-secondary dark:text-white ml-1">12 days</strong>
+</div>
+</div>
+<h3 class="text-base font-bold text-secondary dark:text-white px-1">Quick Actions</h3>
+<div class="grid grid-cols-2 gap-4">
+<button class="col-span-2 bg-primary hover:bg-yellow-400 active:bg-yellow-500 text-secondary rounded-2xl p-4 flex items-center justify-between shadow-lg shadow-yellow-500/20 transition-all transform hover:scale-[1.02]">
+<div class="flex flex-col items-start">
+<span class="font-bold text-lg">Run Speed Test</span>
+<span class="text-xs opacity-80 font-medium">Check your connection</span>
+</div>
+<div class="h-10 w-10 bg-white/20 rounded-full flex items-center justify-center">
+<span class="material-icons-round text-2xl">speed</span>
+</div>
+</button>
+<button class="bg-card-light dark:bg-card-dark hover:bg-gray-50 dark:hover:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-2 transition-colors">
+<div class="h-10 w-10 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+<span class="material-icons-round">radar</span>
+</div>
+<span class="text-sm font-semibold text-gray-700 dark:text-gray-200">Scan Net</span>
+</button>
+<button class="bg-card-light dark:bg-card-dark hover:bg-gray-50 dark:hover:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-2 transition-colors">
+<div class="h-10 w-10 rounded-full bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 flex items-center justify-center">
+<span class="material-icons-round">payments</span>
+</div>
+<span class="text-sm font-semibold text-gray-700 dark:text-gray-200">Pay Bill</span>
+</button>
+<button class="bg-card-light dark:bg-card-dark hover:bg-gray-50 dark:hover:bg-gray-800 p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col items-center justify-center gap-2 transition-colors col-span-2">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+<span class="material-icons-round text-lg">support_agent</span>
+</div>
+<span class="text-sm font-semibold text-gray-700 dark:text-gray-200">Contact Support</span>
+</div>
+</button>
+</div>
+<div class="mt-4 bg-gradient-to-r from-secondary to-[#163c63] rounded-2xl p-4 flex items-center justify-between shadow-lg relative overflow-hidden group cursor-pointer">
+<div class="absolute -right-4 -top-4 h-20 w-20 bg-primary/20 rounded-full blur-xl group-hover:bg-primary/30 transition-all"></div>
+<div class="relative z-10">
+<p class="text-primary text-xs font-bold uppercase mb-1">Security</p>
+<h4 class="text-white font-bold text-base leading-tight">Spam-Free Internet</h4>
+<p class="text-gray-300 text-xs mt-1">Enable Shield+</p>
+</div>
+<div class="bg-white/10 backdrop-blur-md h-10 w-10 rounded-full flex items-center justify-center relative z-10 group-hover:translate-x-1 transition-transform">
+<span class="material-icons-round text-white">security</span>
+</div>
+</div>
+</main>
+<nav class="bg-card-light dark:bg-card-dark border-t border-gray-200 dark:border-gray-800 py-3 px-6 pb-6 safe-area-bottom sticky bottom-0 z-20">
+<div class="flex justify-between items-center">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-icons-round text-2xl">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-icons-round text-2xl">insights</span>
+<span class="text-[10px] font-medium">Usage</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-icons-round text-2xl">receipt_long</span>
+<span class="text-[10px] font-medium">Billing</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
+<span class="material-icons-round text-2xl">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</div>
+</nav>
+<script>
+        // Simple toggle for demo purposes
+        const toggleDarkMode = () => {
+            document.documentElement.classList.toggle('dark');
+        }
+        // Auto-detect system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+<button class="fixed bottom-24 right-4 bg-gray-800 text-white p-3 rounded-full shadow-lg z-50 opacity-50 hover:opacity-100 transition-opacity" onclick="toggleDarkMode()">
+<span class="material-icons-round">dark_mode</span>
+</button>
+
+</body></html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet - Device Info</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fdb612",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#1a1e2e",
+                        "navy-deep": "#0f172a",
+                        "navy-accent": "#1e293b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .status-glow {
+            box-shadow: 0 0 15px rgba(253, 182, 18, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="bg-navy-deep text-white p-6 pb-12 rounded-b-[2.5rem] shadow-xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+<div class="flex items-center justify-between relative z-10">
+<div class="flex items-center gap-3">
+<img alt="Fiber Jet Logo" class="w-10 h-10 rounded-lg bg-primary p-1" data-alt="Fiber Jet ISP company logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcYptK25DYmWvU9pYEfpkm6xCjRjXYZbb0ekfAzdypET6b24NDyXopJ9CN9OkP3-RidJsQWe9Dj1MgSsXuDSacsnbCH4osjU_DScwDc5ynawGjt0GNZPo65bmY3hN9GsO4WCqR8WWGd2WCy77PNnIz2jm67xCkIeTATZ2sooChU4TqsfwW4BRrTIq_LXuV13ZbTfWMGR1f3Wut2MoHKbhBm6ItF4fIUbFrdu8TP-uxF70sbKWpcUc0viwVX1ADqPvpYsXnMNZzAJks"/>
+<h1 class="text-xl font-bold tracking-tight">Fiber Jet</h1>
+</div>
+<button class="bg-navy-accent p-2 rounded-xl border border-slate-700">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+</div>
+<div class="mt-8 relative z-10 flex flex-col items-center">
+<div class="relative">
+<div class="w-32 h-32 bg-navy-accent rounded-full flex items-center justify-center border-2 border-primary/30 status-glow">
+<span class="material-symbols-outlined text-64px text-primary scale-[2.5]">router</span>
+</div>
+<div class="absolute bottom-1 right-1 bg-green-500 w-6 h-6 rounded-full border-4 border-navy-deep flex items-center justify-center">
+<div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+</div>
+</div>
+<div class="mt-4 text-center">
+<h2 class="text-2xl font-bold">FiberJet GigaHub v2</h2>
+<div class="flex items-center justify-center gap-2 mt-1">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<p class="text-primary text-sm font-medium tracking-widest uppercase">System Online</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<main class="flex-1 px-4 -mt-8 relative z-20 space-y-4 mb-24">
+<!-- Quick Stats Strip -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-card p-4 rounded-2xl flex flex-col gap-1 shadow-sm">
+<span class="material-symbols-outlined text-primary mb-1">speed</span>
+<p class="text-slate-500 text-xs font-medium uppercase tracking-wider">Connection</p>
+<p class="font-bold text-navy-deep">Fiber (FTTH)</p>
+</div>
+<div class="glass-card p-4 rounded-2xl flex flex-col gap-1 shadow-sm">
+<span class="material-symbols-outlined text-primary mb-1">timer</span>
+<p class="text-slate-500 text-xs font-medium uppercase tracking-wider">Uptime</p>
+<p class="font-bold text-navy-deep">14d 02h 45m</p>
+</div>
+</div>
+<!-- Technical Detail List -->
+<div class="glass-card rounded-2xl overflow-hidden shadow-sm">
+<div class="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
+<h3 class="font-bold text-navy-deep">Technical Specifications</h3>
+<span class="material-symbols-outlined text-slate-400 text-sm">info</span>
+</div>
+<!-- Detail Rows -->
+<div class="divide-y divide-slate-50">
+<!-- Row: MAC ID -->
+<div class="px-5 py-4 flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-background-light flex items-center justify-center">
+<span class="material-symbols-outlined text-navy-accent">fingerprint</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase">MAC Address</p>
+<p class="font-bold text-navy-deep text-sm tracking-tight">00:1A:2B:3C:4D:5E</p>
+</div>
+</div>
+<button class="text-primary hover:bg-primary/10 p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">content_copy</span>
+</button>
+</div>
+<!-- Row: IP Address -->
+<div class="px-5 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-background-light flex items-center justify-center">
+<span class="material-symbols-outlined text-navy-accent">language</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase">IPv4 Address</p>
+<p class="font-bold text-navy-deep text-sm tracking-tight">192.168.1.1</p>
+</div>
+</div>
+<span class="text-[10px] bg-slate-100 px-2 py-1 rounded-full text-slate-500 font-bold uppercase">Dynamic</span>
+</div>
+<!-- Row: Gateway -->
+<div class="px-5 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-background-light flex items-center justify-center">
+<span class="material-symbols-outlined text-navy-accent">door_open</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase">Default Gateway</p>
+<p class="font-bold text-navy-deep text-sm tracking-tight">192.168.1.254</p>
+</div>
+</div>
+</div>
+<!-- Row: Serial Number -->
+<div class="px-5 py-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-background-light flex items-center justify-center">
+<span class="material-symbols-outlined text-navy-accent">tag</span>
+</div>
+<div>
+<p class="text-slate-400 text-xs font-medium uppercase">Serial Number</p>
+<p class="font-bold text-navy-deep text-sm tracking-tight">FJ-2024-GHUB-9912</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="flex flex-col gap-3 pt-2">
+<button class="bg-primary hover:bg-yellow-500 text-navy-deep font-bold py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 transition-all">
+<span class="material-symbols-outlined">restart_alt</span>
+                Reboot GigaHub
+            </button>
+<button class="bg-navy-deep text-white font-medium py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-navy-accent transition-all">
+<span class="material-symbols-outlined">settings_ethernet</span>
+                Advanced Network Settings
+            </button>
+</div>
+<!-- Support Card -->
+<div class="bg-primary/5 border border-primary/20 rounded-2xl p-5 flex items-center gap-4">
+<div class="bg-primary rounded-full p-2">
+<span class="material-symbols-outlined text-navy-deep">support_agent</span>
+</div>
+<div>
+<h4 class="font-bold text-navy-deep text-sm">Need help with your hardware?</h4>
+<p class="text-navy-accent text-xs">Our technical team is available 24/7 for Fiber Jet users.</p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-6 py-3 flex justify-between items-center z-50">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">router</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Device</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Usage</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Profile</span>
+</a>
+</nav>
+</body></html>

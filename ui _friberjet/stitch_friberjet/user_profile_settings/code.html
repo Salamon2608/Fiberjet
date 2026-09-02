@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "primary-dark": "#d9c705", 
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#222110",
+                        "navy": "#0F172A",
+                        "navy-light": "#1E293B"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #f2df0d;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #f2df0d;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col">
+<!-- Header Section -->
+<div class="bg-navy dark:bg-black pt-12 pb-20 px-6 relative rounded-b-[2.5rem] shadow-xl z-10">
+<!-- Top Bar -->
+<div class="flex justify-between items-center mb-6">
+<button class="text-white/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[28px]">arrow_back</span>
+</button>
+<div class="flex items-center gap-2 text-white font-bold text-lg">
+<span class="material-symbols-outlined text-primary text-[24px]">rocket_launch</span>
+                Fiber Jet
+            </div>
+<button class="text-white/80 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[28px]">settings</span>
+</button>
+</div>
+<!-- Profile Info -->
+<div class="flex flex-col items-center">
+<div class="relative group">
+<div class="w-28 h-28 rounded-full border-4 border-white dark:border-navy-light shadow-lg overflow-hidden bg-white/10 flex items-center justify-center relative">
+<img alt="Profile picture of a user" class="w-full h-full object-cover" data-alt="Young man profile portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4_8dWAIGz9F04lVRxTSiehjeE-5BEkslsByBNR6iqtLgkdGZ_MlezDX5FCpL6bK-t-rRF1Su5Sbd2FygdIPXCAsNd2S6oPEuAtCUwnTvRJd4eeGMlzbxAevSioeXwynm3mn9aV8oYHykIHrAvMZEAuzwkfOFprJBh_Ty_PM0C8eCAVLu2xg-Ewt3rcefgZhlAVdzDBsMfU3duVo7Qe4LsXbnZjF1VxF_udYHAKHsaTgxm3E05LYNrvMbuWvgGK6YP_eVdViie-yDP"/>
+</div>
+<button class="absolute bottom-1 right-1 bg-primary text-navy p-2 rounded-full shadow-md hover:bg-white hover:text-primary transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<h1 class="mt-4 text-2xl font-bold text-white tracking-tight">Alex Sterling</h1>
+<p class="text-white/60 text-sm">Fiber Jet Pro Member</p>
+</div>
+</div>
+<!-- Main Content Container - Overlapping Header -->
+<div class="flex-1 px-4 -mt-10 pb-24 z-20">
+<!-- Personal Information Card -->
+<div class="bg-white dark:bg-navy-light rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-5 mb-6">
+<h2 class="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4 px-1">Personal Info</h2>
+<div class="flex flex-col gap-5">
+<!-- Name Field -->
+<div class="group">
+<label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 ml-1">Full Name</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 text-slate-400 material-symbols-outlined text-[20px]">person</span>
+<input class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-black/20 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-white font-medium transition-all" type="text" value="Alex Sterling"/>
+<span class="absolute right-3 text-primary material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">edit</span>
+</div>
+</div>
+<!-- Mobile Field -->
+<div class="group">
+<label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 ml-1">Mobile Number</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 text-slate-400 material-symbols-outlined text-[20px]">smartphone</span>
+<input class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-black/20 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-white font-medium transition-all" type="tel" value="+1 (555) 000-8888"/>
+<span class="absolute right-3 text-primary material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">edit</span>
+</div>
+</div>
+<!-- Email Field -->
+<div class="group">
+<label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1 ml-1">Email Address</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 text-slate-400 material-symbols-outlined text-[20px]">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-black/20 border-slate-200 dark:border-slate-600 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary text-slate-900 dark:text-white font-medium transition-all" type="email" value="alex.sterling@example.com"/>
+<span class="absolute right-3 text-primary material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">edit</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions & Security -->
+<div class="space-y-4 mb-6">
+<!-- Fetch Number Button -->
+<button class="w-full bg-primary hover:bg-primary-dark text-navy font-bold py-4 px-6 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-between group transition-all transform hover:-translate-y-0.5">
+<div class="flex items-center gap-3">
+<div class="bg-black/10 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[24px]">sim_card_download</span>
+</div>
+<div class="text-left">
+<div class="text-base leading-tight">Fetch &amp; Change Number</div>
+<div class="text-xs font-normal opacity-70">Update service line instantly</div>
+</div>
+</div>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Change Password Button -->
+<button class="w-full bg-white dark:bg-navy-light border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-white font-semibold py-3 px-6 rounded-xl flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 text-[22px]">lock_reset</span>
+<span>Change Password</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</button>
+</div>
+<!-- Safety & Service Section -->
+<div class="bg-white dark:bg-navy-light rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+<div class="bg-slate-50 dark:bg-slate-800/50 px-5 py-3 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+<h2 class="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">shield</span>
+                    Safety &amp; Service
+                </h2>
+<span class="bg-primary/20 text-yellow-700 dark:text-primary text-[10px] font-bold px-2 py-0.5 rounded uppercase">Compulsory</span>
+</div>
+<div class="p-5">
+<div class="flex items-start justify-between gap-4">
+<div class="flex-1">
+<div class="font-semibold text-slate-900 dark:text-white text-base mb-1">Live Location Sharing</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Required for precise fiber line installation and real-time maintenance tracking. Helps technicians locate your service point accurately.
+                        </p>
+</div>
+<!-- Toggle Switch -->
+<div class="relative inline-block w-12 h-7 align-middle select-none transition duration-200 ease-in mt-1 shrink-0">
+<input checked="" class="toggle-checkbox absolute block w-5 h-5 rounded-full bg-white border-4 border-slate-300 appearance-none cursor-pointer transition-all duration-300 top-1 left-1 checked:left-[calc(100%-1.5rem)] checked:border-white z-10" id="location-toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-7 rounded-full bg-slate-300 cursor-pointer transition-colors duration-300 dark:bg-slate-600" for="location-toggle"></label>
+</div>
+</div>
+<!-- Map Preview (Visual Context) -->
+<div class="mt-4 w-full h-24 rounded-lg overflow-hidden relative opacity-80 grayscale hover:grayscale-0 transition-all">
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
+<img alt="Map view of city streets" class="w-full h-full object-cover" data-alt="Abstract map view background" data-location="City Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC_T8iHI3CeVc3JDZTMB19M3h_fB7T3dSFBomA14QTiV5HdqIErxfSEuRQjsO6NUMPzFBlNZe1neoN2zQWz0F4Py2nszc7wpenkW0mDgSPw2LP9nVZ83hT4Q94IPS_-rlIDgqGh8bo3nBGmtqk21Im-lYKvzGr26V7HdV2543loomvEy7VugNPY1Asn7LRP4yLZ0CX2EGJqKGbOTPpqQ74mPQgR2ObM_XQUA3ucJ1xlKBiVD37OSeCnyOGcj0o7buhKWAetob4uwKz"/>
+<div class="absolute bottom-2 left-3 z-20 text-white text-xs font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">my_location</span>
+                        Location Active
+                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<div class="fixed bottom-0 left-0 w-full bg-white dark:bg-navy-light border-t border-slate-100 dark:border-slate-800 px-6 py-3 flex justify-between items-end z-50 safe-area-bottom">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-navy dark:hover:text-white group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-navy dark:hover:text-white group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">speed</span>
+<span class="text-[10px] font-medium">Usage</span>
+</a>
+<div class="relative -top-6">
+<div class="w-14 h-14 bg-navy dark:bg-primary rounded-full flex items-center justify-center shadow-lg shadow-navy/30 dark:shadow-primary/30 text-primary dark:text-navy">
+<span class="material-symbols-outlined text-[28px]">rocket_launch</span>
+</div>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-navy dark:hover:text-white group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">support_agent</span>
+<span class="text-[10px] font-medium">Support</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-navy dark:text-primary group" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform fill-current">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</body></html>

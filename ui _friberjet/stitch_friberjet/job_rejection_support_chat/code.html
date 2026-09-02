@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Service Tech - Job Rejection Flow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fdb612",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#231d0f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e7e3da; border-radius: 10px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 overflow-hidden rounded-lg bg-primary/10 flex items-center justify-center">
+<img class="size-8 object-contain" data-alt="Fiber Jet Company Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ85z-qc5rkoFG-CSYVBkwfFQ47yspbiXgF8823Y26O1YED3cMkBrm818OLNCoN9t8SmPRnF9NKWkbudIn9gzFWs1rRnxxRakqDy4pGTLe-SxlHs9df2r330dcUu3RQKsyauBG1XM9TgPIKXd_6wQ16BIx9yPKsRVxuKIoYuC0--832m0a_47lKnyFy92BlgzNDSLmufBRKhp0d92NEInc84JWpiIzL_sWYFxrWT0fCVXt2RnU2lxp-LAnHB3_MsbLqvG8or5L-HVg"/>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-none tracking-tight">Job Rejection</h1>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wider">ID: #FJ-88291</p>
+</div>
+</div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400">close</span>
+</button>
+</header>
+<main class="flex-1 flex flex-col md:flex-row max-w-6xl mx-auto w-full">
+<!-- Left Side: Form Section -->
+<div class="flex-1 p-4 lg:p-6 space-y-6 overflow-y-auto">
+<!-- Warning Banner -->
+<div class="flex items-start gap-4 rounded-xl border border-primary/30 bg-primary/5 p-4">
+<div class="bg-primary p-2 rounded-lg text-slate-900">
+<span class="material-symbols-outlined text-xl block">warning</span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-slate-900 dark:text-slate-100 text-sm font-bold leading-tight uppercase tracking-wide">Urgent Action Required</p>
+<p class="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">Rejections require administrative review before you can proceed to your next task.</p>
+</div>
+</div>
+<!-- Reason Dropdown -->
+<div class="space-y-2">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">list_alt</span>
+                    Select Reason for Rejection
+                </label>
+<div class="relative">
+<select class="appearance-none w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-4 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all">
+<option disabled="" selected="" value="">Select the primary reason...</option>
+<option value="not_available">Customer Not Available</option>
+<option value="tech_issue">Technical Feasibility Issue</option>
+<option value="equip_fail">Equipment Failure</option>
+<option value="access_denied">Access Denied</option>
+<option value="safety">Safety Hazard</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Mandatory Comments -->
+<div class="space-y-2">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">edit_note</span>
+                    Detailed Comments <span class="text-red-500">*</span>
+</label>
+<textarea class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-4 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-primary outline-none min-h-[120px] resize-none" placeholder="Provide more details on why the job could not be completed..."></textarea>
+</div>
+<!-- Photo Upload Area -->
+<div class="space-y-3">
+<label class="text-sm font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-base">photo_camera</span>
+                    Photo Evidence <span class="text-red-500">*</span>
+</label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+<!-- Photo Placeholder -->
+<div class="aspect-square rounded-xl border-2 border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center gap-2 hover:border-primary/50 cursor-pointer transition-colors bg-white dark:bg-slate-900">
+<span class="material-symbols-outlined text-slate-400">add_a_photo</span>
+<span class="text-[10px] font-bold uppercase text-slate-400">Add Photo</span>
+</div>
+<!-- Uploaded Image 1 -->
+<div class="relative aspect-square rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover" data-alt="Technical issue on site equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxqpAF-YCDVgnp38oaSyAYaW4W8-8jdU_T68ou5p1X-qnevIVmVWuQxbSdlDCzkcUyJDk9j2QiejQ4EkxRsAUopjdVfXXgv2bdmH7UvjliwrBdME2fz8Bl-eLhTLTEPqV02eTH_Z3gnI9iswlV6zGiXokOrFYSmUhlkp4w8i3K9iNrEbhhQlRmlIYX7vfqUE7TP4hGKZ4nLDZt1fWCsQdqVhMM8QSi7I5-kZ3TqErMzx9CY6dv-Ucp-HxvI3RXn_0Hfm-yUWEeSIUY"/>
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="bg-red-500 text-white p-2 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+<div class="absolute top-2 right-2 bg-green-500 text-white p-0.5 rounded-full">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-primary text-slate-900 font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[0.99] active:scale-95 transition-all flex items-center justify-center gap-2">
+<span>Submit Rejection</span>
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<!-- Right Side: Support Chat -->
+<div class="w-full md:w-[400px] border-t md:border-t-0 md:border-l border-slate-200 dark:border-slate-800 flex flex-col h-[500px] md:h-auto bg-white dark:bg-slate-900/50">
+<!-- Chat Header -->
+<div class="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-background-dark">
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="size-10 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">support_agent</span>
+</div>
+<span class="absolute bottom-0 right-0 size-3 bg-green-500 border-2 border-white dark:border-background-dark rounded-full"></span>
+</div>
+<div>
+<h3 class="font-bold text-sm leading-none">Support Chat</h3>
+<p class="text-[10px] text-green-600 font-bold uppercase mt-1">Admin Online</p>
+</div>
+</div>
+</div>
+<!-- Chat Messages -->
+<div class="flex-1 p-4 overflow-y-auto space-y-4 custom-scrollbar">
+<!-- Admin Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none text-sm">
+                        Hello. I see you're having trouble with the installation. Could you confirm if you've tried the reset sequence?
+                    </div>
+<span class="text-[10px] text-slate-500 mt-1 ml-1">Admin • 10:45 AM</span>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end ml-auto max-w-[85%]">
+<div class="bg-primary/20 dark:bg-primary/10 border border-primary/20 p-3 rounded-2xl rounded-tr-none text-sm text-slate-900 dark:text-slate-100">
+                        Yes, tried that twice. The power indicator is still showing a red fault.
+                    </div>
+<span class="text-[10px] text-slate-500 mt-1 mr-1">You • 10:46 AM</span>
+</div>
+<!-- Admin Message -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl rounded-tl-none text-sm">
+                        Understood. Please document the fault code in your comments and attach a photo of the unit. I will authorize the rejection once submitted.
+                    </div>
+<span class="text-[10px] text-slate-500 mt-1 ml-1">Admin • 10:47 AM</span>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-4 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+<div class="relative flex items-center gap-2">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+<input class="flex-1 bg-slate-50 dark:bg-slate-800 border-none rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none" placeholder="Type message..." type="text"/>
+<button class="size-10 bg-primary text-slate-900 rounded-full flex items-center justify-center shadow-md shadow-primary/20">
+<span class="material-symbols-outlined text-lg">arrow_upward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

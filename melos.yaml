@@ -1,0 +1,14 @@
+name: fiberjet_workspace
+
+packages:
+  - apps/**
+  - packages/**
+
+scripts:
+  analyze:
+    exec: dart analyze .
+    description: Run dart analyze on all packages.
+
+  test:
+    exec: flutter test
+    description: Run tests in all packages.

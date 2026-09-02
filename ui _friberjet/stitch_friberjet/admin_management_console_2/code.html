@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Admin Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#FBBF24", // Yellow/Gold from logo
+                        secondary: "#1E3A8A", // Dark Navy from logo
+                        "background-light": "#F3F4F6",
+                        "background-dark": "#0F172A", // Very dark navy for background
+                        "surface-dark": "#1E293B", // Slightly lighter navy for cards
+                        "surface-light": "#FFFFFF",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.75rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-sans antialiased transition-colors duration-200">
+<div class="max-w-md mx-auto min-h-screen relative pb-20">
+<header class="sticky top-0 z-30 bg-surface-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 px-6 py-4 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary dark:bg-white flex items-center justify-center shadow-md overflow-hidden p-1">
+<img alt="Fiber Jet Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8HBAc4XGLAXVcLVNBNhi-Bdm9AGhvIeUZ_240_dUsT1CYbe_Zh72aTgfGm1N7yDfZbA_bP4DwO6yzkhrF__qWmcpyig5Y3MQRhiyWQA5Ar_wcVsX2dd2mjjZd3ZC29NJpZZkZvZUiN15MByRuodGPfmG5zK_uhTpw71R7xEMPAKtHvijUyhqt6B8iTxvqX4eBJTP66lSdugXcZzYBeTJcxnXW3uDNm9gTPEgOdP0mPfCkC2hvkCOswWM02kmlea_9fPrdgQwV2nft"/>
+</div>
+<div>
+<h1 class="text-xl font-bold tracking-tight text-secondary dark:text-white">Fiber Jet</h1>
+<p class="text-xs text-gray-500 dark:text-slate-400 font-medium">Admin Console</p>
+</div>
+</div>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-icons-round text-gray-600 dark:text-slate-300">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 bg-primary rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+</header>
+<main class="px-5 py-6 space-y-8">
+<section class="grid grid-cols-2 gap-4">
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700">
+<div class="flex justify-between items-start mb-2">
+<span class="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400 material-icons-round text-xl">router</span>
+<span class="text-xs font-semibold text-green-500 flex items-center">+12% <span class="material-icons-round text-sm">arrow_upward</span></span>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white">1,420</h3>
+<p class="text-xs text-gray-500 dark:text-slate-400 mt-1">Total Connections</p>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700">
+<div class="flex justify-between items-start mb-2">
+<span class="p-2 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg text-yellow-600 dark:text-yellow-400 material-icons-round text-xl">payments</span>
+<span class="text-xs font-semibold text-green-500 flex items-center">+5.2% <span class="material-icons-round text-sm">arrow_upward</span></span>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white">$42.8k</h3>
+<p class="text-xs text-gray-500 dark:text-slate-400 mt-1">Revenue (MTD)</p>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 col-span-2 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-red-50 dark:bg-red-900/30 rounded-lg text-red-500 material-icons-round">warning</div>
+<div>
+<h3 class="text-sm font-bold text-gray-900 dark:text-white">Critical Alert</h3>
+<p class="text-xs text-gray-500 dark:text-slate-400">Node #482 Down (Downtown)</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-secondary text-white text-xs font-medium rounded-lg shadow-sm hover:bg-opacity-90">Resolve</button>
+</div>
+</section>
+<section class="space-y-6">
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-bold text-gray-800 dark:text-white">Active Users Growth</h2>
+<select class="bg-transparent text-xs font-medium text-gray-500 dark:text-slate-400 border-none outline-none focus:ring-0 cursor-pointer">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+</select>
+</div>
+<div class="h-48 w-full relative">
+<canvas id="activeUsersChart"></canvas>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-5 rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-bold text-gray-800 dark:text-white">Monthly Revenue</h2>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded-md">High Perf.</span>
+</div>
+<div class="h-48 w-full relative">
+<canvas id="revenueChart"></canvas>
+</div>
+</div>
+</section>
+<section>
+<div class="flex justify-between items-center mb-4 px-1">
+<h2 class="text-lg font-bold text-gray-800 dark:text-white">Pending Approvals</h2>
+<a class="text-xs font-semibold text-primary hover:text-opacity-80" href="#">View All</a>
+</div>
+<div class="space-y-3">
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVsr3ZDHkBxPJzJXfj_SHRgIHXtuHa4CLsSVd2yYtUFVyhDYZtpSc9f-uMqNqosjUGD-CQMiJWuOtrWgucoHFOzUSLGIIeZ-Pm9VGvgQogZTbuUl3BoMUh6D6lZT2wiOmz1o2Geb9gwhknwKUJL8eNlYNYM3K3C3l7CmcDkcyVKc8N7qxVLbmIr7EWqD3GzVpvlm4Eya_ZdeZX7asUnPgjZzOBtgcCxm1G2A08S5g-IH1dr7VUIrlZEWJPr4frBg_w4LnU5G9AKjx0"/>
+<div class="absolute -bottom-1 -right-1 bg-white dark:bg-surface-dark p-0.5 rounded-full">
+<span class="material-icons-round text-sm text-blue-500 bg-blue-100 dark:bg-blue-900/50 rounded-full p-0.5">engineering</span>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-900 dark:text-white">Mike Ross</h4>
+<p class="text-xs text-gray-500 dark:text-slate-400">Technician • Zone A</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors">
+<span class="material-icons-round text-lg">check</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 flex items-center justify-center hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+<span class="material-icons-round text-lg">close</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-4 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAgGshnBH-xZMZxxpSp4PVvxUZE5jwOQRD0gu4VV55C2zUFcQtc3bnbOjZZht8Mcj0YJnedkfyHERRkqJ4iVaQOeDvrMQxrED4Y7BgbqCwyLKG1z0TrMJUwtA_L_KAAV8DVnZ7Jlvwb0R-EyRuxH48s3IrJ-yi66bz5qXj6j40vT85_jSkmsJXFC46HcQoa2yLl8OxNiIWupL5rsX4eFU_66BGvEKxeWhc5EVGp73X3UElD3o6IRcO2AwtEVnKn0EsPtot1ORyh9TC"/>
+<div class="absolute -bottom-1 -right-1 bg-white dark:bg-surface-dark p-0.5 rounded-full">
+<span class="material-icons-round text-sm text-purple-500 bg-purple-100 dark:bg-purple-900/50 rounded-full p-0.5">badge</span>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold text-gray-900 dark:text-white">Sarah Jenks</h4>
+<p class="text-xs text-gray-500 dark:text-slate-400">Sales Rep • Remote</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center hover:bg-green-200 dark:hover:bg-green-900/50 transition-colors">
+<span class="material-icons-round text-lg">check</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 flex items-center justify-center hover:bg-red-200 dark:hover:bg-red-900/50 transition-colors">
+<span class="material-icons-round text-lg">close</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<section class="pb-6">
+<div class="flex justify-between items-center mb-4 px-1">
+<h2 class="text-lg font-bold text-gray-800 dark:text-white">Live Tracking</h2>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-xs font-medium text-gray-500 dark:text-slate-400">8 Active</span>
+</span>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden relative h-56">
+<div class="absolute inset-0 bg-gray-200 dark:bg-gray-800 bg-[url('https://maps.googleapis.com/maps/api/staticmap?center=40.714728,-73.998672&amp;zoom=12&amp;size=600x300&amp;scale=2&amp;maptype=roadmap&amp;style=feature:all%7Celement:geometry%7Ccolor:0x242f3e&amp;style=feature:all%7Celement:labels.text.stroke%7Ccolor:0x242f3e&amp;style=feature:all%7Celement:labels.text.fill%7Ccolor:0x746855&amp;key=YOUR_API_KEY_HERE')] bg-cover bg-center opacity-80 dark:opacity-60">
+<div class="w-full h-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center">
+<span class="text-slate-400 dark:text-slate-500 text-sm">Map View</span>
+</div>
+</div>
+<div class="absolute top-10 left-12 transform -translate-x-1/2 -translate-y-1/2">
+<div class="relative group">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-surface-dark shadow-lg overflow-hidden">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdFPRGIFJZphclQkHnNiYKMjzFrgRxlLrVgs76YhFnoG0gQfSmzdeIsx6BJP_dfuNAI63q-9SYnHQGdAIver6oeJ_Zv1pmV8O9kpMaIvJi8ZW2ZQ7pd9bprpogquNC8mi1l84bHl-_lloM2GnVe1VimcqvlzCU-tWKeWg9XO5jC6QxNaGdPnOMAvBbGHENLdxLanhNp4KYrXwKbIhnsS5B41YRt9ke_DfQ4hwsrsYzymojWgsuqHUBRB_135unxdAxOTg64U45BPI1"/>
+</div>
+<div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white dark:bg-surface-dark px-2 py-1 rounded text-[10px] font-bold shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap dark:text-white">
+                                John (On-site)
+                            </div>
+</div>
+</div>
+<div class="absolute top-24 right-16 transform -translate-x-1/2 -translate-y-1/2">
+<div class="relative group">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-surface-dark shadow-lg overflow-hidden bg-primary flex items-center justify-center text-white text-xs font-bold">
+                                TM
+                            </div>
+</div>
+</div>
+<div class="absolute bottom-3 right-3 flex flex-col gap-2">
+<button class="bg-white dark:bg-surface-dark text-gray-600 dark:text-slate-300 p-2 rounded-lg shadow-md hover:bg-gray-50 dark:hover:bg-slate-700">
+<span class="material-icons-round text-lg block">my_location</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 w-full max-w-md bg-surface-light dark:bg-background-dark border-t border-gray-200 dark:border-slate-800 flex justify-around items-center py-3 pb-safe z-40 backdrop-blur-lg bg-opacity-95 dark:bg-opacity-95">
+<a class="flex flex-col items-center gap-1 text-secondary dark:text-primary" href="#">
+<span class="material-icons-round">dashboard</span>
+<span class="text-[10px] font-medium">Overview</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300" href="#">
+<span class="material-icons-round">people</span>
+<span class="text-[10px] font-medium">Users</span>
+</a>
+<div class="relative -top-6">
+<button class="w-14 h-14 bg-secondary text-white rounded-full shadow-lg shadow-blue-900/40 flex items-center justify-center transform transition-transform hover:scale-105">
+<span class="material-icons-round text-2xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300" href="#">
+<span class="material-icons-round">map</span>
+<span class="text-[10px] font-medium">Map</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-300" href="#">
+<span class="material-icons-round">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<script>
+        // Check for dark mode preference
+        const isDarkMode = document.documentElement.classList.contains('dark') || 
+                           window.matchMedia('(prefers-color-scheme: dark)').matches;
+        // Ensure the dark class is added if preferred
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        const textColor = isDarkMode ? '#CBD5E1' : '#475569';
+        const gridColor = isDarkMode ? '#334155' : '#E2E8F0';
+        // Line Chart - Active Users
+        const ctxUsers = document.getElementById('activeUsersChart').getContext('2d');
+        // Create gradient for line chart
+        const gradientUsers = ctxUsers.createLinearGradient(0, 0, 0, 200);
+        gradientUsers.addColorStop(0, 'rgba(251, 191, 36, 0.5)'); // primary color with opacity
+        gradientUsers.addColorStop(1, 'rgba(251, 191, 36, 0)');
+        new Chart(ctxUsers, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'New Users',
+                    data: [120, 190, 300, 500, 480, 620],
+                    borderColor: '#FBBF24', // primary
+                    backgroundColor: gradientUsers,
+                    borderWidth: 2,
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#FBBF24',
+                    pointBorderColor: isDarkMode ? '#0F172A' : '#FFFFFF',
+                    pointBorderWidth: 2,
+                    pointRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        backgroundColor: isDarkMode ? '#1E293B' : '#FFFFFF',
+                        titleColor: isDarkMode ? '#FFFFFF' : '#0F172A',
+                        bodyColor: isDarkMode ? '#CBD5E1' : '#475569',
+                        borderColor: isDarkMode ? '#334155' : '#E2E8F0',
+                        borderWidth: 1,
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: textColor, font: { size: 10 } }
+                    },
+                    y: {
+                        grid: { color: gridColor, borderDash: [4, 4] },
+                        ticks: { color: textColor, font: { size: 10 }, maxTicksLimit: 5 }
+                    }
+                }
+            }
+        });
+        // Bar Chart - Revenue
+        const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctxRevenue, {
+            type: 'bar',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [4200, 3800, 5100, 4800, 6200, 5800, 4900],
+                    backgroundColor: '#1E3A8A', // secondary
+                    hoverBackgroundColor: '#FBBF24', // primary
+                    borderRadius: 4,
+                    barThickness: 12,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: textColor, font: { size: 10 } }
+                    },
+                    y: {
+                        grid: { display: false }, // Cleaner look for bar chart
+                        ticks: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body></html>

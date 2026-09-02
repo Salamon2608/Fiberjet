@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiber Jet Admin - Ad Control Panel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "accent-yellow": "#FDB813",
+                        "deep-navy": "#0A2540",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0A2540",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Header -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-deep-navy/90 backdrop-blur-md border-b border-slate-200 dark:border-primary/20 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden border border-primary/20">
+<img alt="Fiber Jet Company Logo" class="w-full h-full object-cover" data-alt="Fiber Jet stylized rocket logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC7bQGlLsc02yKHBrCkF_MCfbaXWxljQF05XTDu5k9Ezo1H8nnYFLGTxmwueaMVtdpDZt4cGFbqzReHIi7kMb5EVfxvLy3olCvxNS6SCQsFDJuOO27YxagFGsfeuKi3NitYEj_nHnfy4g_otDze56X9QQ22s4m6JDEIRB0itWekTouvTweAz9KxuHaIpA13UFE6H3Q168ipTe-frRZyLOrKwFW2-IQeY2Kc2lVW2DsP_6BW7dQoEAmBDEFeOcu5N14apuBn8HTyoDP"/>
+</div>
+<div>
+<h1 class="text-sm font-bold tracking-tight text-primary dark:text-slate-100">Fiber Jet</h1>
+<p class="text-[10px] font-medium uppercase tracking-widest text-accent-yellow">Admin Console</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">notifications</span>
+</button>
+<div class="size-8 rounded-full border-2 border-accent-yellow overflow-hidden">
+<img alt="Admin Profile" class="w-full h-full object-cover" data-alt="Professional headshot of system administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJ0W4iO5Qrw7B71dHaM74Y1lBVcEfBWQKJVlQ_uONnpN49VcWBZH5aV_OH4IoDvCQHeQ_3CCmnTTWq9zC7Gx51ydg2XQfaQYbXzr09DI5JwSf_JpsJ-3jtwT6_BckZ-P1XgHlkckj8O-Y1OjuKVYd9QPpZ1yU4jqYat3WFYkAsk_b82X3QN0_VIYh4op2ji6rn_cZAyuAMF_Ka0tfFqDdgGgZejEyBIFcGIJlpLQoRX9JYY2-7OzEf9fPsG_yg7qc-jw0eLxGowknd"/>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto px-4 pb-32">
+<!-- Page Title & Action -->
+<div class="py-6 flex flex-col gap-1">
+<h2 class="text-2xl font-bold tracking-tight dark:text-white">Manage Promotional Ads</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Control active marketing campaigns on user dashboards.</p>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 mb-8 transition-transform active:scale-95">
+<span class="material-symbols-outlined">add_circle</span>
+            Add New Ad Campaign
+        </button>
+<!-- Ad List Section -->
+<div class="space-y-4">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-primary/60">Active &amp; Scheduled</h3>
+<span class="bg-accent-yellow/10 text-accent-yellow text-[10px] font-bold px-2 py-0.5 rounded-full border border-accent-yellow/20">3 TOTAL</span>
+</div>
+<!-- Ad Card 1 -->
+<div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-primary/10 rounded-xl p-4 flex items-start gap-4">
+<div class="size-16 rounded-lg bg-slate-100 dark:bg-slate-800 flex-shrink-0 overflow-hidden">
+<img alt="Promo Image" class="w-full h-full object-cover" data-alt="Vibrant abstract blue and gold graphic for 50 percent off promo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl1S5hyb3mLYKRWlyEXDcgP9akbwC-Qk1fvc807LTACTXTsctYeAi4e2fFDOLEQdobfVzV1MwVPbXgzcww5CWlsXUbvb53D00fDp0UzTykfNjYwlx71IBrv8rRb-lqqQOofKrfNPOBTSEelp_rA2IrpgHKzyZaEHQ7mOSAO-yJd2iHDhkQmHiB9Ms5wO_nQqfaaJC5dZD80AXxS_opM-Nh1Cp6_i9FI4GpBCxLK6bx3RJTX9FucYPvGvYKmbkK4KqzjvvhXhv2Ried"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-block size-2 rounded-full bg-green-500"></span>
+<span class="text-[10px] font-bold uppercase text-green-500">Live Now</span>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-slate-100 truncate">50% Off First Month</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">group</span>
+                        Target: <span class="text-primary dark:text-accent-yellow font-medium ml-1">New Users</span>
+</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+<!-- Ad Card 2 -->
+<div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-primary/10 rounded-xl p-4 flex items-start gap-4">
+<div class="size-16 rounded-lg bg-slate-100 dark:bg-slate-800 flex-shrink-0 overflow-hidden">
+<img alt="Promo Image" class="w-full h-full object-cover" data-alt="High speed visual representation with light streaks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXzZfFAYD29IyM8shen4LRzFmbax-PsBXMy71O1VaPZAgrTZP_n2SJazttz99VcnWEx3kvFHxrn9u7i2tyRNCmIqc7RPyKscy9wQmyME_0g1IRj4QO0cjCFl-QO9Iim-9rOOcTWAAgOmlepWbWujfWZCtNrfXBKscsbRRScO9IYgscs79bYUOYx2aGhxUSCWCjBoKYjww03lESv9NQ9bd6DhnrJZgpBJ62AuRBv_mwHgBitnrx2CcBWoY1DICJC17Bcb25SKV6K-yv"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-block size-2 rounded-full bg-accent-yellow"></span>
+<span class="text-[10px] font-bold uppercase text-accent-yellow">Scheduled</span>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-slate-100 truncate">Summer Speed Boost</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">public</span>
+                        Target: <span class="text-primary dark:text-accent-yellow font-medium ml-1">All Customers</span>
+</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+<!-- Ad Card 3 -->
+<div class="bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-primary/10 rounded-xl p-4 flex items-start gap-4">
+<div class="size-16 rounded-lg bg-slate-100 dark:bg-slate-800 flex-shrink-0 overflow-hidden grayscale">
+<img alt="Promo Image" class="w-full h-full object-cover" data-alt="Illustration of two people connecting symbolizing referral" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEkE8xU7tn-UxkVZtcpkeKpGCps_0pP1OdQs73_ojMIqA5cTsUplvNWa0NGZBs9g2l4Qcmk4IC-jaSVCUp3F6PsYuPJQl-59V0nhFDfcXD1meaVo9GhfDgGGtluXS2TrJC3o_6nl-3lQqkzzKxwqaBmvcdE9-G46aGRrwmYV9yMjJatJYfKjSuGoRnKkJB0a41QvM4fIMBJ-0WTv8VO2WPW4MuBI7BEV0GwGI9OvJi2Hg5dM6zzTuH4xdEO-KY5U_f9yANtg7iAq4P"/>
+</div>
+<div class="flex-1 min-w-0 opacity-60">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-block size-2 rounded-full bg-slate-400"></span>
+<span class="text-[10px] font-bold uppercase text-slate-400">Paused</span>
+</div>
+<h4 class="font-bold text-slate-900 dark:text-slate-100 truncate">Referral Bonus</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">person_add</span>
+                        Target: <span class="text-primary dark:text-accent-yellow font-medium ml-1">Existing</span>
+</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+<button class="text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Performance Quick Look -->
+<div class="mt-10 pb-10">
+<h3 class="text-sm font-bold mb-4 dark:text-white">Quick Metrics</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-primary/5 border border-primary/10">
+<p class="text-[10px] font-bold uppercase text-primary/60 dark:text-primary/80">Total Clicks</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">12.4k</p>
+<span class="text-[10px] text-green-500 font-bold">+12% from last week</span>
+</div>
+<div class="p-4 rounded-xl bg-accent-yellow/5 border border-accent-yellow/10">
+<p class="text-[10px] font-bold uppercase text-accent-yellow/80">Avg. Conversion</p>
+<p class="text-2xl font-bold text-slate-900 dark:text-white">4.8%</p>
+<span class="text-[10px] text-slate-400 font-bold">Industry avg: 3.2%</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-deep-navy border-t border-slate-200 dark:border-primary/20 px-2 pb-6 pt-2 z-20">
+<div class="max-w-md mx-auto flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Users</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary dark:text-accent-yellow transition-colors relative" href="#">
+<span class="material-symbols-outlined active-icon">ads_click</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Ads</span>
+<span class="absolute top-1 right-2 size-2 bg-primary dark:bg-accent-yellow rounded-full border-2 border-white dark:border-deep-navy"></span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Profit</span>
+</a>
+</div>
+</nav>
+</body></html>
